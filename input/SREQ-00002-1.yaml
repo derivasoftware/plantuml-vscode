@@ -1,0 +1,12 @@
+requirement:
+  id: SREQ-00002-1
+  title: The extension shall register the plantuml language with highlighting
+  description: >
+    The extension shall register the plantuml language with highlighting.
+  rationale: >
+    Language contribution for .puml/.plantuml/.iuml/.wsd with comment/bracket rules, plus a TextMate grammar mirroring the tree-sitter subset — VS Code does not consume tree-sitter grammars natively.
+  owner: dcoello-dev
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00001-1

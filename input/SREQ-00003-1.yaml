@@ -1,0 +1,12 @@
+requirement:
+  id: SREQ-00003-1
+  title: The extension shall launch the plantuml-lsp language client
+  description: >
+    The extension shall launch the plantuml-lsp language client.
+  rationale: >
+    Spawns plantuml-lsp over stdio for diagnostics, symbols, include navigation and formatting; the command is configurable and the failure path degrades to a warning instead of breaking the editor.
+  owner: dcoello-dev
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00001-1

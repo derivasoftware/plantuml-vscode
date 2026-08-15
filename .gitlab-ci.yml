@@ -1,0 +1,40 @@
+# CI — plantuml-vscode. Node-only: compile + vitest on MR/main; release
+# tags package the .vsix and push it to the generic package registry.
+
+include:
+  - project: deriva/infra/ci-templates
+    ref: main
+    file:
+      - /templates/base.yml
+      - /templates/node.yml
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_TAG
+
+test:
+  stage: test
+  extends: [.node-base, .on-mr-and-main]
+  script:
+    - npm ci
+    - npm test
+
+package-vsix:
+  stage: deploy
+  extends: [.node-base]
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - npm ci
+    - npm run compile
+    - npx vsce package --allow-missing-repository -o plantuml-vscode-${CI_COMMIT_TAG}.vsix
+    - >
+      curl --fail --header "JOB-TOKEN: ${CI_JOB_TOKEN}"
+      --upload-file plantuml-vscode-${CI_COMMIT_TAG}.vsix
+      "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/plantuml-vscode/${CI_COMMIT_TAG}/plantuml-vscode-${CI_COMMIT_TAG}.vsix"
+  artifacts:
+    paths:
+      - "*.vsix"
+    expire_in: 30 days

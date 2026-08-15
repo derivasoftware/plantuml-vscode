@@ -1,0 +1,17 @@
+@startuml CL_Extension
+' requirement REQ-00001-1
+' requirement REQ-00003-1
+
+!startsub Extension
+
+namespace client.extension {
+  class "<<module>>" as ExtensionModule {
+    + activate(context: ExtensionContext): Promise<void>
+    + deactivate(): Promise<void>
+  }
+  ExtensionModule ..> client.serverOptions.ServerOptionsModule
+}
+
+!endsub
+
+@enduml

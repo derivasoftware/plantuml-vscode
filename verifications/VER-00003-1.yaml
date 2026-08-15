@@ -1,0 +1,7 @@
+verification:
+  id: VER-00003-1
+  req_id: REQ-00003-1
+  title: Release review of the first tag pipeline publishing the vsix
+  description: >
+    Evidence - the first vX.Y.Z tag pipeline with package-vsix green and the vsix visible in the generic package registry. Re-verify on each release tag.
+  method: review

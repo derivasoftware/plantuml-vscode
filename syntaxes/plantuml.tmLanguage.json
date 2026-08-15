@@ -1,0 +1,71 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "PlantUML",
+  "scopeName": "source.plantuml",
+  "patterns": [
+    { "include": "#block-comment" },
+    { "include": "#line-comment" },
+    { "include": "#envelope" },
+    { "include": "#preprocessor" },
+    { "include": "#divider" },
+    { "include": "#string" },
+    { "include": "#stereotype" },
+    { "include": "#color" },
+    { "include": "#declaration-keywords" },
+    { "include": "#other-keywords" },
+    { "include": "#arrow" },
+    { "include": "#visibility" }
+  ],
+  "repository": {
+    "block-comment": {
+      "name": "comment.block.plantuml",
+      "begin": "/'",
+      "end": "'/"
+    },
+    "line-comment": {
+      "name": "comment.line.quote.plantuml",
+      "match": "^\\s*'.*$"
+    },
+    "envelope": {
+      "name": "keyword.control.envelope.plantuml",
+      "match": "@(startuml|enduml|startsub|endsub)\\b"
+    },
+    "preprocessor": {
+      "name": "keyword.control.directive.plantuml",
+      "match": "^\\s*!(includesub|include|startsub|endsub|pragma|theme|define|if|else|endif)\\b"
+    },
+    "divider": {
+      "name": "meta.separator.plantuml",
+      "match": "^\\s*==.*$"
+    },
+    "string": {
+      "name": "string.quoted.double.plantuml",
+      "begin": "\"",
+      "end": "\""
+    },
+    "stereotype": {
+      "name": "entity.name.tag.stereotype.plantuml",
+      "match": "<<[^>\\n]+>>"
+    },
+    "color": {
+      "name": "constant.other.color.plantuml",
+      "match": "#[\\w;:.\\/\\\\|-]+"
+    },
+    "declaration-keywords": {
+      "name": "storage.type.plantuml",
+      "match": "\\b(class|interface|enum|abstract|package|namespace|together|participant|actor|boundary|control|entity|database|collections|queue)\\b"
+    },
+    "other-keywords": {
+      "name": "keyword.other.plantuml",
+      "match": "\\b(note|end note|end|hide|show|remove|restore|extends|implements|as|of|on|link|alt|opt|loop|par|break|critical|group|else|title|skinparam|legend|header|footer|scale|caption|autonumber|left|right|top|bottom|over)\\b"
+    },
+    "arrow": {
+      "name": "keyword.operator.arrow.plantuml",
+      "match": "(<\\|?|\\*|o)?(-+|\\.+)(\\|>|>|\\*|o)?"
+    },
+    "visibility": {
+      "name": "keyword.operator.visibility.plantuml",
+      "match": "^\\s*[+#~-](?=\\s|\\{)"
+    }
+  }
+}

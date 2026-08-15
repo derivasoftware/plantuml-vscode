@@ -1,0 +1,17 @@
+.venv/
+src/
+*.vsix
+input/
+requirements/
+verifications/
+constraints/
+audits/
+design/
+tests/
+argos.toml
+CLAUDE.md
+.mcp.json
+.gitlab-ci.yml
+.pre-commit-config.yaml
+tsconfig.json
+**/*.map

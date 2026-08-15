@@ -1,0 +1,9 @@
+verification:
+  id: VER-00001-1
+  req_id: REQ-00001-1
+  title: Manifest tests pin the language contribution
+  description: >
+    Manifest tests pin the language contribution
+  method: test
+  test_ids:
+    - tests/manifest.test.ts::language contribution

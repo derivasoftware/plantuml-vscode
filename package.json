@@ -1,0 +1,73 @@
+{
+  "name": "plantuml-vscode",
+  "displayName": "PlantUML Toolkit (deriva)",
+  "description": "PlantUML language support backed by the deriva/plantuml toolchain: tree-sitter grammar, plantuml-fmt and plantuml-lsp",
+  "version": "0.1.0",
+  "publisher": "deriva",
+  "license": "MIT",
+  "repository": "https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-vscode",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Linters"
+  ],
+  "main": "./out/client/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "languages": [
+      {
+        "id": "plantuml",
+        "aliases": [
+          "PlantUML"
+        ],
+        "extensions": [
+          ".puml",
+          ".plantuml",
+          ".iuml",
+          ".wsd"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "plantuml",
+        "scopeName": "source.plantuml",
+        "path": "./syntaxes/plantuml.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "PlantUML Toolkit",
+      "properties": {
+        "plantuml.lsp.path": {
+          "type": "string",
+          "default": "plantuml-lsp",
+          "description": "Command used to launch the PlantUML language server (install it with: pip install plantuml-lsp)."
+        },
+        "plantuml.lsp.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Start the language server for PlantUML documents."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "test": "tsc -p ./ && vitest run",
+    "package": "vsce package --allow-missing-repository"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "typescript": "^5.5.0",
+    "vitest": "^3.0.0"
+  }
+}

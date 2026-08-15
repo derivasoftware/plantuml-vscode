@@ -1,0 +1,15 @@
+@startuml CL_ServerOptions
+' requirement REQ-00002-1
+
+!startsub ServerOptions
+
+namespace client.serverOptions {
+  class "<<module>>" as ServerOptionsModule {
+    + resolveServerCommand(configuredPath: string | undefined): string
+    + documentSelector(): { scheme: string; language: string }[]
+  }
+}
+
+!endsub
+
+@enduml

@@ -1,0 +1,13 @@
+requirement:
+  id: REQ-00001-1
+  title: The manifest shall contribute the plantuml language, grammar and settings
+  description: >
+    The manifest shall contribute the plantuml language, grammar and settings
+  rationale: >
+    package.json contributes the language (four extensions), wires the TextMate grammar to source.plantuml, and exposes plantuml.lsp.path / plantuml.lsp.enabled.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00002-1
+  tags:
+    - manifest

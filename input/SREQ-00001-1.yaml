@@ -1,0 +1,11 @@
+requirement:
+  id: SREQ-00001-1
+  title: The extension shall bundle the PlantUML toolchain for VS Code
+  description: >
+    The extension shall bundle the PlantUML toolchain for VS Code.
+  rationale: >
+    Umbrella: the distribution vehicle of the deriva/plantuml family. The grammar, formatter and language server reach editor users through this pack; argos-vscode is a sibling consumer, not a dependency.
+  owner: dcoello-dev
+  status: APPROVED
+  asil: QM
+  parent_ids: []

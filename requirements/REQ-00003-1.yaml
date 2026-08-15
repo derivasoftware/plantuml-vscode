@@ -1,0 +1,13 @@
+requirement:
+  id: REQ-00003-1
+  title: The tag pipeline shall build and publish the vsix
+  description: >
+    The tag pipeline shall build and publish the vsix
+  rationale: >
+    package-vsix compiles, runs vsce package with dependencies bundled and uploads to the generic registry under the tag version.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00004-1
+  tags:
+    - packaging

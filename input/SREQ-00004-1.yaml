@@ -1,0 +1,12 @@
+requirement:
+  id: SREQ-00004-1
+  title: The pipeline shall package the extension as an installable vsix on release tags
+  description: >
+    The pipeline shall package the extension as an installable vsix on release tags.
+  rationale: >
+    Tag pipelines build the .vsix with runtime dependencies bundled and publish it to the project's generic package registry, giving a pinned install artifact per version.
+  owner: dcoello-dev
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00001-1

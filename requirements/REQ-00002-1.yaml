@@ -1,0 +1,13 @@
+requirement:
+  id: REQ-00002-1
+  title: The client shall resolve the server command from configuration with a safe default
+  description: >
+    The client shall resolve the server command from configuration with a safe default
+  rationale: >
+    resolveServerCommand trims the configured path and falls back to plantuml-lsp; the document selector targets file-scheme plantuml documents. Pure helpers, unit-tested outside the editor host.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00003-1
+  tags:
+    - client

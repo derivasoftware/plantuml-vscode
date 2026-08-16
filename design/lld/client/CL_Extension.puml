@@ -2,7 +2,7 @@
 ' requirement REQ-00001-1
 ' requirement REQ-00003-1
 
-!startsub Extension
+!startsub ExtensionModule
 
 namespace client.extension {
   class "<<module>>" as ExtensionModule {

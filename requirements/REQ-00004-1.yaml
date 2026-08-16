@@ -1,0 +1,18 @@
+requirement:
+  id: REQ-00004-1
+  title: The webview shall parse and render diagrams through the bundled wasm grammar and engine
+  description: >
+    The webview shall parse and render diagrams through the bundled wasm grammar and engine
+  rationale: >
+    web-tree-sitter plus tree-sitter-plantuml.wasm parse in the webview;
+    plantuml-render/browser projects the CST to IR and emits themable SVG
+    mapped onto editor colors. The host expands includes with a
+    workspace.fs loader so aggregates render. CSP stays at wasm-unsafe-eval
+    — no eval, no remote code.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00005-1
+  tags:
+    - preview
+    - webview

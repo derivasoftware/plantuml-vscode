@@ -119,9 +119,31 @@ function html(
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="${csp}">
 <style>
-  body { margin: 0; padding: 8px; background: var(--vscode-editor-background); }
+  body { margin: 0; background: var(--vscode-editor-background); overflow: hidden; }
   .error { color: var(--vscode-errorForeground); white-space: pre-wrap; }
-  svg { max-width: 100%; height: auto; }
+  #toolbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: flex; gap: 14px; align-items: center; padding: 6px 10px;
+    background: var(--vscode-editorWidget-background);
+    border-bottom: 1px solid var(--vscode-editorWidget-border, transparent);
+    color: var(--vscode-foreground);
+    font-family: var(--vscode-font-family); font-size: 12px;
+    user-select: none;
+  }
+  #toolbar label { display: flex; gap: 4px; align-items: center; cursor: pointer; }
+  #toolbar button {
+    background: var(--vscode-button-secondaryBackground, transparent);
+    color: var(--vscode-button-secondaryForeground, inherit);
+    border: 1px solid var(--vscode-editorWidget-border, currentColor);
+    border-radius: 3px; padding: 2px 8px; cursor: pointer; font-size: 11px;
+  }
+  #stage {
+    position: absolute; inset: 32px 0 0 0; overflow: hidden;
+    cursor: grab; touch-action: none;
+  }
+  #root { position: absolute; transform-origin: 0 0; padding: 8px; }
+  #root svg { display: block; }
+  .pr-box, .pr-note, .pr-container { cursor: move; }
   /* Map the editor theme onto the engine's theming contract so strokes,
      text and fills stay visible on light AND dark editor backgrounds. */
   #root {
@@ -135,7 +157,14 @@ function html(
 </style>
 </head>
 <body>
-<div id="root">Loading grammar…</div>
+<div id="toolbar">
+  <label><input type="checkbox" id="f-members" checked> members</label>
+  <label><input type="checkbox" id="f-namespaces" checked> namespaces</label>
+  <label><input type="checkbox" id="f-notes" checked> notes</label>
+  <button id="reset-layout">reset layout</button>
+  <button id="reset-view">reset view</button>
+</div>
+<div id="stage"><div id="root">Loading grammar…</div></div>
 <script nonce="${nonce}">
   window.__PREVIEW__ = {
     treeSitterWasm: "${media("tree-sitter.wasm")}",

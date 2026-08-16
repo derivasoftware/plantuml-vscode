@@ -1,0 +1,24 @@
+@startuml CL_WebviewPreview
+' requirement REQ-00004-1
+' requirement REQ-00005-1
+
+!startsub WebviewPreviewModule
+
+namespace webview.preview {
+  class "<<module>>" as WebviewPreviewModule {
+    - currentIr() : RenderIr | null
+    - rerender() : void
+    - applyView() : void
+    - draggableGroup(target: EventTarget | null) : SVGGElement | null
+    - onPointerDown(ev: PointerEvent) : void
+    - onPointerMove(ev: PointerEvent) : void
+    - onPointerUp() : void
+    - onWheel(ev: WheelEvent) : void
+    - wireToolbar() : void
+    - init() : Promise<void>
+  }
+}
+
+!endsub
+
+@enduml

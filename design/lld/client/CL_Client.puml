@@ -1,0 +1,19 @@
+@startuml CL_Client
+' requirement REQ-00001-1
+' requirement REQ-00002-1
+' requirement REQ-00003-1
+' requirement REQ-00004-1
+
+!startsub ServerOptionsModule
+!includesub ./CL_ServerOptions.puml!ServerOptionsModule
+!endsub
+
+!startsub ExtensionModule
+!includesub ./CL_Extension.puml!ExtensionModule
+!endsub
+
+!startsub PreviewModule
+!includesub ./CL_Preview.puml!PreviewModule
+!endsub
+
+@enduml

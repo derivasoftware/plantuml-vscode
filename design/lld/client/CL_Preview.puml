@@ -1,0 +1,18 @@
+@startuml CL_Preview
+' requirement REQ-00004-1
+
+!startsub PreviewModule
+
+namespace client.preview {
+  class "<<module>>" as PreviewModule {
+    + registerPreview(context: ExtensionContext) : void
+    - activePlantumlDocument() : TextDocument | undefined
+    - showPreview(context: ExtensionContext) : void
+    - postSource(doc: TextDocument) : void
+    - html(webview: Webview, cfg: PreviewConfig, nonce: string) : string
+  }
+}
+
+!endsub
+
+@enduml

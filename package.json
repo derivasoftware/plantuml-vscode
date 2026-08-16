@@ -2,7 +2,7 @@
   "name": "plantuml-vscode",
   "displayName": "PlantUML Toolkit (deriva)",
   "description": "PlantUML language support backed by the deriva/plantuml toolchain: tree-sitter grammar, plantuml-fmt and plantuml-lsp",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "publisher": "deriva",
   "license": "MIT",
   "repository": "https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-vscode",

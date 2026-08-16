@@ -122,6 +122,16 @@ function html(
   body { margin: 0; padding: 8px; background: var(--vscode-editor-background); }
   .error { color: var(--vscode-errorForeground); white-space: pre-wrap; }
   svg { max-width: 100%; height: auto; }
+  /* Map the editor theme onto the engine's theming contract so strokes,
+     text and fills stay visible on light AND dark editor backgrounds. */
+  #root {
+    --pr-stroke: var(--vscode-editor-foreground);
+    --pr-text: var(--vscode-editor-foreground);
+    --pr-box-fill: var(--vscode-editorWidget-background);
+    --pr-note-fill: var(--vscode-editorWidget-background);
+    --pr-container-fill: transparent;
+    --pr-font: var(--vscode-editor-font-family, ui-monospace, monospace);
+  }
 </style>
 </head>
 <body>

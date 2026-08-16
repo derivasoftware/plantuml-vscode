@@ -6,6 +6,13 @@ the pack that brings the family into the editor.
 
 ## What you get
 
+- **Self-contained live preview** (`PlantUML: Open Preview`, editor-title
+  button): the tree-sitter grammar compiled to wasm plus the
+  [plantuml-render](https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-render)
+  engine run inside the webview — deterministic SVG on every keystroke,
+  **no Java, no server, no native binaries**. Renders the class-diagram
+  subset; unsupported constructs simply don't draw.
+
 - **Language registration** for `.puml` / `.plantuml` / `.iuml` / `.wsd`
   with comment toggling (`'`, `/' '/`), bracket pairs and word rules.
 - **Syntax highlighting** via a TextMate grammar mirroring the

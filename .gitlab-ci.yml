@@ -14,10 +14,17 @@ workflow:
     - if: $CI_COMMIT_BRANCH == "main"
     - if: $CI_COMMIT_TAG
 
+.git-auth: &git-auth
+  - export GIT_CONFIG_GLOBAL="$CI_PROJECT_DIR/.gitconfig-ci"
+  - git config --file "$GIT_CONFIG_GLOBAL"
+    url."https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/".insteadOf
+    "https://${CI_SERVER_HOST}/"
+
 test:
   stage: test
   extends: [.node-base, .on-mr-and-main]
   script:
+    - *git-auth
     - npm ci
     - npm test
 
@@ -27,6 +34,7 @@ package-vsix:
   rules:
     - if: $CI_COMMIT_TAG
   script:
+    - *git-auth
     - npm ci
     - npm run compile
     - npx vsce package --allow-missing-repository -o plantuml-vscode-${CI_COMMIT_TAG}.vsix

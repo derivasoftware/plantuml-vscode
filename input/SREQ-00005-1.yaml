@@ -1,0 +1,18 @@
+requirement:
+  id: SREQ-00005-1
+  title: The extension shall preview diagrams interactively in a self-contained webview
+  description: >
+    The extension shall preview diagrams interactively in a self-contained webview.
+  rationale: >
+    Live preview with no Java, no server, no native binaries: the webview
+    bundles the wasm grammar plus the plantuml-render engine, the host
+    expands !include/!includesub before posting the source, and the view is
+    read-only interactive — drag entities and namespaces, filter members,
+    namespaces and notes, pan and zoom. Interaction state stays in the
+    webview; the engine primitives are governed by plantuml-render
+    SREQ-00007-1.
+  owner: dcoello-dev
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00001-1

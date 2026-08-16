@@ -11,7 +11,14 @@ the pack that brings the family into the editor.
   [plantuml-render](https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-render)
   engine run inside the webview — deterministic SVG on every keystroke,
   **no Java, no server, no native binaries**. Renders the class-diagram
-  subset; unsupported constructs simply don't draw.
+  subset; unsupported constructs simply don't draw. `!include` /
+  `!includesub` aggregates expand before rendering.
+
+- **Interactive, read-only**: drag entities, notes and whole namespaces
+  (containers re-fit around their children; positions survive live
+  re-renders thanks to stable ids), toggle members / namespaces / notes
+  off with pure IR filters, pan the canvas and zoom around the cursor.
+  Reset buttons restore layout and view; the source is never touched.
 
 - **Language registration** for `.puml` / `.plantuml` / `.iuml` / `.wsd`
   with comment toggling (`'`, `/' '/`), bracket pairs and word rules.

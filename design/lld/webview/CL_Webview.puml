@@ -1,0 +1,9 @@
+@startuml CL_Webview
+' requirement REQ-00004-1
+' requirement REQ-00005-1
+
+!startsub WebviewPreviewModule
+!includesub ./CL_WebviewPreview.puml!WebviewPreviewModule
+!endsub
+
+@enduml

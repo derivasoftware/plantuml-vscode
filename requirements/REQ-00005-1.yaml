@@ -1,0 +1,19 @@
+requirement:
+  id: REQ-00005-1
+  title: The webview shall filter, drag, pan and zoom the rendered diagram read-only
+  description: >
+    The webview shall filter, drag, pan and zoom the rendered diagram read-only
+  rationale: >
+    Toolbar checkboxes toggle the engine's pure IR filters (members,
+    namespaces, notes); entities, notes and namespaces drag via
+    position overrides keyed by stable ids so layouts survive live
+    re-renders; background drag pans and the wheel zooms around the
+    cursor; reset buttons restore layout and view. The source document
+    is never modified.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00005-1
+  tags:
+    - preview
+    - interaction

@@ -1,7 +1,7 @@
 @startuml CL_ServerOptions
 ' requirement REQ-00002-1
 
-!startsub ServerOptions
+!startsub ServerOptionsModule
 
 namespace client.serverOptions {
   class "<<module>>" as ServerOptionsModule {

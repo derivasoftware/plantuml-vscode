@@ -1,0 +1,9 @@
+verification:
+  id: VER-00005-1
+  req_id: REQ-00005-1
+  title: Bundle tests prove filter, drag and reset wiring ships in the webview
+  description: >
+    Bundle tests prove filter, drag and reset wiring ships in the webview
+  method: test
+  test_ids:
+    - tests/preview.test.ts::interactive preview

@@ -4,4 +4,6 @@
 
 namespace client <<package>> {
 }
+namespace webview <<package>> {
+}
 @enduml

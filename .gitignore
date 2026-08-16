@@ -9,3 +9,5 @@ node_modules/
 out/
 *.vsix
 .venv/
+media/preview.js
+media/tree-sitter.wasm

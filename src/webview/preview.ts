@@ -87,7 +87,9 @@ function draggableGroup(target: EventTarget | null): SVGGElement | null {
   while (el && el.tagName !== "svg") {
     if (
       el instanceof SVGGElement &&
-      (el.classList.contains("pr-box") || el.classList.contains("pr-note"))
+      (el.classList.contains("pr-box") ||
+        el.classList.contains("pr-note") ||
+        el.classList.contains("pr-container"))
     ) {
       return el;
     }

@@ -143,7 +143,7 @@ function html(
   }
   #root { position: absolute; transform-origin: 0 0; padding: 8px; }
   #root svg { display: block; }
-  .pr-box, .pr-note { cursor: move; }
+  .pr-box, .pr-note, .pr-container { cursor: move; }
   /* Map the editor theme onto the engine's theming contract so strokes,
      text and fills stay visible on light AND dark editor backgrounds. */
   #root {

@@ -1,4 +1,27 @@
+import * as path from "node:path";
+
+import {
+  expandIncludes,
+  type IncludeLoader,
+} from "plantuml-render/browser";
 import * as vscode from "vscode";
+
+const loader: IncludeLoader = {
+  async read(file: string): Promise<string | null> {
+    try {
+      const data = await vscode.workspace.fs.readFile(vscode.Uri.file(file));
+      return Buffer.from(data).toString("utf8");
+    } catch {
+      return null;
+    }
+  },
+  resolve(base: string, relative: string): string {
+    return path.resolve(base, relative);
+  },
+  dirname(file: string): string {
+    return path.dirname(file);
+  },
+};
 
 let panel: vscode.WebviewPanel | undefined;
 
@@ -62,7 +85,14 @@ function showPreview(context: vscode.ExtensionContext): void {
 }
 
 function postSource(doc: vscode.TextDocument): void {
-  void panel?.webview.postMessage({ type: "source", text: doc.getText() });
+  void (async () => {
+    const expanded = await expandIncludes(
+      doc.getText(),
+      path.dirname(doc.uri.fsPath),
+      loader,
+    );
+    await panel?.webview.postMessage({ type: "source", text: expanded });
+  })();
 }
 
 function html(

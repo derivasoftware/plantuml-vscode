@@ -5,11 +5,13 @@ import {
   ServerOptions,
 } from "vscode-languageclient/node";
 
+import { registerPreview } from "./preview";
 import { documentSelector, resolveServerCommand } from "./serverOptions";
 
 let client: LanguageClient | undefined;
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
+  registerPreview(context);
   const config = vscode.workspace.getConfiguration("plantuml");
   if (!config.get<boolean>("lsp.enabled", true)) {
     return;

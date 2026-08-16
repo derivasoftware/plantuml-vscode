@@ -2,7 +2,7 @@
   "name": "plantuml-vscode",
   "displayName": "PlantUML Toolkit (deriva)",
   "description": "PlantUML language support backed by the deriva/plantuml toolchain: tree-sitter grammar, plantuml-fmt and plantuml-lsp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "deriva",
   "license": "MIT",
   "repository": "https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-vscode",
@@ -53,12 +53,30 @@
           "description": "Start the language server for PlantUML documents."
         }
       }
+    },
+    "commands": [
+      {
+        "command": "plantuml.showPreview",
+        "title": "PlantUML: Open Preview",
+        "icon": "$(open-preview)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "plantuml.showPreview",
+          "when": "resourceLangId == plantuml",
+          "group": "navigation"
+        }
+      ]
     }
   },
   "scripts": {
-    "compile": "tsc -p ./",
-    "test": "tsc -p ./ && vitest run",
-    "package": "vsce package --allow-missing-repository"
+    "compile": "tsc -p ./ && npm run bundle && node scripts/prepare-media.mjs",
+    "test": "npm run compile && vitest run",
+    "package": "vsce package --allow-missing-repository",
+    "bundle": "esbuild src/webview/preview.ts --bundle --format=iife --platform=browser --outfile=media/preview.js --external:fs --external:path --external:module",
+    "vscode:prepublish": "npm run compile"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"
@@ -67,7 +85,10 @@
     "@types/node": "^20.11.0",
     "@types/vscode": "^1.85.0",
     "@vscode/vsce": "^3.2.1",
+    "esbuild": "^0.28.2",
+    "plantuml-render": "git+https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-render.git#v0.2.1",
     "typescript": "^5.5.0",
-    "vitest": "^3.0.0"
+    "vitest": "^3.0.0",
+    "web-tree-sitter": "^0.26.12"
   }
 }

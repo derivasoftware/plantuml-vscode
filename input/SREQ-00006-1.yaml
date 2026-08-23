@@ -1,0 +1,18 @@
+requirement:
+  id: SREQ-00006-1
+  title: The preview shall render through the official PlantUML jar as a selectable engine
+  description: >
+    The preview shall render through the official PlantUML jar as a selectable engine.
+  rationale: >
+    The two engines complement each other: the bundled native engine is
+    interactive (drag, filters, editor theming) over the class subset;
+    a user-installed plantuml.jar gives full-fidelity static output for
+    everything PlantUML draws. The jar is never bundled (GPL, size) and
+    nothing leaves the machine — the local jar is the only official
+    backend for now; server mode is a future, explicitly opt-in
+    decision.
+  owner: dcoello-dev
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00001-1

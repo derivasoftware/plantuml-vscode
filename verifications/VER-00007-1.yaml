@@ -1,0 +1,10 @@
+verification:
+  id: VER-00007-1
+  req_id: REQ-00007-1
+  title: Bundle and manifest tests cover engine selection, fallback and settings
+  description: >
+    Bundle and manifest tests cover engine selection, fallback and settings
+  method: test
+  test_ids:
+    - tests/preview.test.ts::engine selection
+    - tests/manifest.test.ts::render engine settings

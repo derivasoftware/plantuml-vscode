@@ -40,3 +40,17 @@ describe("preview contribution", () => {
     expect(menu.when).toContain("plantuml");
   });
 });
+
+describe("render engine settings", () => {
+  const props = manifest.contributes.configuration.properties;
+
+  it("exposes the engine choice with native default", () => {
+    expect(props["plantuml.render.engine"].enum).toEqual(["native", "plantuml"]);
+    expect(props["plantuml.render.engine"].default).toBe("native");
+  });
+
+  it("exposes jar and java paths, jar unbundled by default", () => {
+    expect(props["plantuml.render.jarPath"].default).toBe("");
+    expect(props["plantuml.render.javaPath"].default).toBe("java");
+  });
+});

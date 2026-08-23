@@ -3,6 +3,8 @@
 ' requirement REQ-00002-1
 ' requirement REQ-00003-1
 ' requirement REQ-00004-1
+' requirement REQ-00006-1
+' requirement REQ-00007-1
 
 !startsub ServerOptionsModule
 !includesub ./CL_ServerOptions.puml!ServerOptionsModule
@@ -14,6 +16,10 @@
 
 !startsub PreviewModule
 !includesub ./CL_Preview.puml!PreviewModule
+!endsub
+
+!startsub JarRendererModule
+!includesub ./CL_JarRenderer.puml!JarRendererModule
 !endsub
 
 @enduml

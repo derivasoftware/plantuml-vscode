@@ -1,0 +1,20 @@
+requirement:
+  id: REQ-00006-1
+  title: The host shall render diagrams through a configured plantuml.jar with cancellation
+  description: >
+    The host shall render diagrams through a configured plantuml.jar with cancellation
+  rationale: >
+    spawn(javaPath, -jar jarPath -tsvg -pipe -charset utf-8 [-darkmode])
+    with the document directory as cwd, so PlantUML resolves its own
+    includes; raw buffer text is piped, so unsaved edits preview live.
+    JVM startup dominates, so renders debounce and a newer request
+    aborts the in-flight child. Any SVG on stdout displays (PlantUML
+    draws its own syntax errors); missing java or jar produce
+    actionable error strings naming the setting to fix.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00006-1
+  tags:
+    - preview
+    - jar-engine

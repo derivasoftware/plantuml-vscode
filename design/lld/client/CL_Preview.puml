@@ -1,14 +1,17 @@
 @startuml CL_Preview
 ' requirement REQ-00004-1
+' requirement REQ-00007-1
 
 !startsub PreviewModule
 
 namespace client.preview {
   class "<<module>>" as PreviewModule {
     + registerPreview(context: ExtensionContext) : void
+    - engineConfig() : { engine: string; jarPath: string; javaPath: string }
     - activePlantumlDocument() : TextDocument | undefined
     - showPreview(context: ExtensionContext) : void
     - postSource(doc: TextDocument) : void
+    - scheduleJarRender(doc: TextDocument) : void
     - html(webview: Webview, cfg: PreviewConfig, nonce: string) : string
   }
 }

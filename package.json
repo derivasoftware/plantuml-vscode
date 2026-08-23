@@ -2,7 +2,7 @@
   "name": "plantuml-vscode",
   "displayName": "PlantUML Toolkit (deriva)",
   "description": "PlantUML language support backed by the deriva/plantuml toolchain: tree-sitter grammar, plantuml-fmt and plantuml-lsp",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "publisher": "deriva",
   "license": "MIT",
   "repository": "https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-vscode",
@@ -51,6 +51,29 @@
           "type": "boolean",
           "default": true,
           "description": "Start the language server for PlantUML documents."
+        },
+        "plantuml.render.engine": {
+          "type": "string",
+          "enum": [
+            "native",
+            "plantuml"
+          ],
+          "enumDescriptions": [
+            "Bundled deterministic engine: interactive (drag, filters), self-contained, class-diagram subset.",
+            "Official plantuml.jar: full PlantUML fidelity, static output. Requires Java and plantuml.render.jarPath."
+          ],
+          "default": "native",
+          "description": "Preview rendering engine. The toolbar can switch it per panel."
+        },
+        "plantuml.render.jarPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to plantuml.jar for the official engine (the jar is never bundled)."
+        },
+        "plantuml.render.javaPath": {
+          "type": "string",
+          "default": "java",
+          "description": "Java executable used to run plantuml.jar."
         }
       }
     },

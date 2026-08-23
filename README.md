@@ -20,6 +20,16 @@ the pack that brings the family into the editor.
   off with pure IR filters, pan the canvas and zoom around the cursor.
   Reset buttons restore layout and view; the source is never touched.
 
+- **Two engines, one preview**: the toolbar switches between the
+  bundled **native** engine (interactive, editor-themed, class subset)
+  and the official **plantuml.jar** (full PlantUML fidelity, static —
+  pan/zoom only). Configure `plantuml.render.jarPath` (+ optionally
+  `plantuml.render.javaPath`) and pick a default with
+  `plantuml.render.engine`. The jar runs with the document's directory
+  as cwd so it resolves its own `!include`s, renders dark when the
+  editor is dark, and is never bundled; if it fails, the preview falls
+  back to the native render and says why. Nothing leaves the machine.
+
 - **Language registration** for `.puml` / `.plantuml` / `.iuml` / `.wsd`
   with comment toggling (`'`, `/' '/`), bracket pairs and word rules.
 - **Syntax highlighting** via a TextMate grammar mirroring the

@@ -1,0 +1,20 @@
+requirement:
+  id: REQ-00007-1
+  title: The preview shall switch engines per panel and fall back to native on jar failure
+  description: >
+    The preview shall switch engines per panel and fall back to native on jar failure
+  rationale: >
+    plantuml.render.engine sets the default (native, self-contained,
+    out of the box); the toolbar selector overrides it per panel. In
+    jar mode the IR filters and drag are inert (foreign SVG has no
+    stable ids or theming contract) and are visibly disabled — pan,
+    zoom and reset view remain. A failing jar never leaves the panel
+    empty: the native render shows with a status line naming the
+    failure.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00006-1
+  tags:
+    - preview
+    - jar-engine

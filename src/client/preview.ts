@@ -6,6 +6,8 @@ import {
 } from "plantuml-render/browser";
 import * as vscode from "vscode";
 
+import { renderWithJar } from "./jarRenderer";
+
 const loader: IncludeLoader = {
   async read(file: string): Promise<string | null> {
     try {
@@ -24,6 +26,20 @@ const loader: IncludeLoader = {
 };
 
 let panel: vscode.WebviewPanel | undefined;
+// Toolbar override for this panel; unset = follow the setting.
+let engineOverride: "native" | "plantuml" | undefined;
+let currentDoc: vscode.TextDocument | undefined;
+let jarTimer: ReturnType<typeof setTimeout> | undefined;
+let jarAbort: AbortController | undefined;
+
+function engineConfig() {
+  const cfg = vscode.workspace.getConfiguration("plantuml.render");
+  return {
+    engine: engineOverride ?? cfg.get<string>("engine", "native"),
+    jarPath: cfg.get<string>("jarPath", ""),
+    javaPath: cfg.get<string>("javaPath", "java"),
+  };
+}
 
 export function registerPreview(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
@@ -38,6 +54,11 @@ export function registerPreview(context: vscode.ExtensionContext): void {
     vscode.window.onDidChangeActiveTextEditor(() => {
       const doc = activePlantumlDocument();
       if (panel && doc) postSource(doc);
+    }),
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      if (event.affectsConfiguration("plantuml.render") && panel && currentDoc) {
+        postSource(currentDoc);
+      }
     }),
   );
 }
@@ -74,25 +95,67 @@ function showPreview(context: vscode.ExtensionContext): void {
   );
   panel.onDidDispose(() => {
     panel = undefined;
+    engineOverride = undefined;
   });
-  panel.webview.onDidReceiveMessage((msg: { type: string }) => {
-    if (msg.type === "ready") {
-      const current = activePlantumlDocument();
-      if (current) postSource(current);
-    }
-  });
+  panel.webview.onDidReceiveMessage(
+    (msg: { type: string; engine?: "native" | "plantuml" }) => {
+      if (msg.type === "ready") {
+        const current = activePlantumlDocument();
+        if (current) postSource(current);
+      } else if (msg.type === "engine" && msg.engine) {
+        engineOverride = msg.engine;
+        if (currentDoc) postSource(currentDoc);
+      }
+    },
+  );
   panel.webview.html = html(context, panel.webview);
 }
 
 function postSource(doc: vscode.TextDocument): void {
+  currentDoc = doc;
+  const cfg = engineConfig();
   void (async () => {
     const expanded = await expandIncludes(
       doc.getText(),
       path.dirname(doc.uri.fsPath),
       loader,
     );
-    await panel?.webview.postMessage({ type: "source", text: expanded });
+    await panel?.webview.postMessage({
+      type: "source",
+      text: expanded,
+      engine: cfg.engine,
+    });
   })();
+  if (cfg.engine === "plantuml") scheduleJarRender(doc);
+}
+
+// JVM startup dominates jar renders (~1s), so keystrokes debounce and
+// a newer request aborts the in-flight child.
+function scheduleJarRender(doc: vscode.TextDocument): void {
+  if (jarTimer) clearTimeout(jarTimer);
+  jarTimer = setTimeout(() => {
+    jarAbort?.abort();
+    const ctl = new AbortController();
+    jarAbort = ctl;
+    const cfg = engineConfig();
+    void (async () => {
+      const result = await renderWithJar(
+        doc.getText(),
+        path.dirname(doc.uri.fsPath),
+        {
+          javaPath: cfg.javaPath,
+          jarPath: cfg.jarPath,
+          darkMode:
+            vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark ||
+            vscode.window.activeColorTheme.kind ===
+              vscode.ColorThemeKind.HighContrast,
+        },
+        ctl.signal,
+      );
+      if (ctl.signal.aborted) return;
+      await panel?.webview.postMessage({ type: "jar-svg", ...result });
+    })();
+  }, 350);
 }
 
 function html(
@@ -137,6 +200,15 @@ function html(
     border: 1px solid var(--vscode-editorWidget-border, currentColor);
     border-radius: 3px; padding: 2px 8px; cursor: pointer; font-size: 11px;
   }
+  #toolbar select {
+    background: var(--vscode-dropdown-background, transparent);
+    color: var(--vscode-dropdown-foreground, inherit);
+    border: 1px solid var(--vscode-editorWidget-border, currentColor);
+    border-radius: 3px; padding: 1px 4px; font-size: 11px;
+  }
+  #toolbar label.off { opacity: 0.4; pointer-events: none; }
+  #toolbar button.off { opacity: 0.4; pointer-events: none; }
+  #status { color: var(--vscode-descriptionForeground); font-size: 11px; }
   #stage {
     position: absolute; inset: 32px 0 0 0; overflow: hidden;
     cursor: grab; touch-action: none;
@@ -158,11 +230,16 @@ function html(
 </head>
 <body>
 <div id="toolbar">
+  <select id="engine" title="rendering engine">
+    <option value="native">native</option>
+    <option value="plantuml">plantuml.jar</option>
+  </select>
   <label><input type="checkbox" id="f-members" checked> members</label>
   <label><input type="checkbox" id="f-namespaces" checked> namespaces</label>
   <label><input type="checkbox" id="f-notes" checked> notes</label>
   <button id="reset-layout">reset layout</button>
   <button id="reset-view">reset view</button>
+  <span id="status"></span>
 </div>
 <div id="stage"><div id="root">Loading grammar…</div></div>
 <script nonce="${nonce}">

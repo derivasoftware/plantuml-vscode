@@ -55,3 +55,19 @@ describe("interactive preview", () => {
     expect(bundle).toContain("reset-view");
   });
 });
+
+describe("engine selection", () => {
+  it("wires the engine selector and the jar result message", () => {
+    expect(bundle).toContain('"engine"');
+    expect(bundle).toContain("jar-svg");
+    expect(bundle).toContain("plantuml.jar");
+  });
+
+  it("falls back to the native render when the jar fails", () => {
+    expect(bundle).toContain("showing native render");
+  });
+
+  it("never pulls node builtins into the webview", () => {
+    expect(bundle).not.toContain("child_process");
+  });
+});

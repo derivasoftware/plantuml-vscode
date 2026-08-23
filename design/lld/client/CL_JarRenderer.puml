@@ -1,0 +1,15 @@
+@startuml CL_JarRenderer
+' requirement REQ-00006-1
+
+!startsub JarRendererModule
+
+namespace client.jarRenderer {
+  class "<<module>>" as JarRendererModule {
+    + jarArgs(cfg: JarConfig) : string[]
+    + renderWithJar(source: string, cwd: string, cfg: JarConfig, signal: AbortSignal) : Promise<JarResult>
+  }
+}
+
+!endsub
+
+@enduml

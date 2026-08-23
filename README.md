@@ -20,6 +20,10 @@ the pack that brings the family into the editor.
   off with pure IR filters, pan the canvas and zoom around the cursor.
   Reset buttons restore layout and view; the source is never touched.
 
+See [`doc/preview.md`](doc/preview.md) for the full preview guide and
+[`doc/settings.md`](doc/settings.md) for the settings reference and
+troubleshooting.
+
 - **Two engines, one preview**: the toolbar switches between the
   bundled **native** engine (interactive, editor-themed, class subset)
   and the official **plantuml.jar** (full PlantUML fidelity, static —

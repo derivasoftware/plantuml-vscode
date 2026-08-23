@@ -37,7 +37,7 @@ package-vsix:
     - *git-auth
     - npm ci
     - npm run compile
-    - npx vsce package --allow-missing-repository -o plantuml-vscode-${CI_COMMIT_TAG}.vsix
+    - npx vsce package --allow-missing-repository --baseContentUrl "${CI_PROJECT_URL}/-/raw/main/" --baseImagesUrl "${CI_PROJECT_URL}/-/raw/main/" -o plantuml-vscode-${CI_COMMIT_TAG}.vsix
     - >
       curl --fail --header "JOB-TOKEN: ${CI_JOB_TOKEN}"
       --upload-file plantuml-vscode-${CI_COMMIT_TAG}.vsix

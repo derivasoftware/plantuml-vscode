@@ -6,8 +6,8 @@
 
 namespace client.extension {
   class "<<module>>" as ExtensionModule {
-    + activate(context: ExtensionContext): Promise<void>
-    + deactivate(): Promise<void>
+    + activate(context: ExtensionContext) : Promise<void>
+    + deactivate() : Promise<void>
   }
   ExtensionModule ..> client.serverOptions.ServerOptionsModule
 }

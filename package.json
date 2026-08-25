@@ -99,7 +99,8 @@
     "test": "npm run compile && vitest run",
     "package": "vsce package --allow-missing-repository",
     "bundle": "esbuild src/webview/preview.ts --bundle --format=iife --platform=browser --outfile=media/preview.js --external:fs --external:path --external:module && esbuild src/client/extension.ts --bundle --format=cjs --platform=node --outfile=out/client/extension.js --external:vscode",
-    "vscode:prepublish": "npm run compile"
+    "vscode:prepublish": "npm run compile",
+    "test:ci": "npm run compile && vitest run --reporter=default --reporter=junit --outputFile=test-results/junit.xml --coverage.enabled --coverage.provider=v8 --coverage.reporter=cobertura --coverage.reportsDirectory=test-results/coverage --coverage.include=src/**"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"
@@ -107,6 +108,7 @@
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/vscode": "^1.85.0",
+    "@vitest/coverage-v8": "^3.2.7",
     "@vscode/vsce": "^3.2.1",
     "esbuild": "^0.28.2",
     "plantuml-render": "git+https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-render.git#v0.5.2",

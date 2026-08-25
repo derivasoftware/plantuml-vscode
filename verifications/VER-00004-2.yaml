@@ -1,0 +1,16 @@
+verification:
+  id: VER-00004-2
+  req_id: REQ-00004-1
+  title: Bundle tests prove the shipped webview; controller tests prove the source protocol and CSP
+  description: >
+    The bundle tests prove parser, engine and no-eval ship in the
+    webview exactly as built. Revision 2 adds the controller side: the
+    panel serves nonce-locked CSP html carrying both wasm uris, answers
+    the webview's ready with the include-expanded source, and re-posts
+    on active-document edits and render-configuration changes.
+  method: test
+  test_ids:
+    - "tests/preview.test.ts::webview pipeline"
+    - "tests/clientPreview.test.ts::panel lifecycle"
+    - "tests/clientPreview.test.ts::message protocol"
+  status: APPROVED

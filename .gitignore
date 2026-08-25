@@ -11,3 +11,4 @@ out/
 .venv/
 media/preview.js
 media/tree-sitter.wasm
+test-results/

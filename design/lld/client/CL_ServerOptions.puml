@@ -5,8 +5,8 @@
 
 namespace client.serverOptions {
   class "<<module>>" as ServerOptionsModule {
-    + resolveServerCommand(configuredPath: string | undefined): string
-    + documentSelector(): { scheme: string; language: string }[]
+    + resolveServerCommand(configuredPath: string | undefined) : string
+    + documentSelector() : { scheme: string; language: string }[]
   }
 }
 

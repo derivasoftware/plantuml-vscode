@@ -1,0 +1,16 @@
+verification:
+  id: VER-00007-2
+  req_id: REQ-00007-1
+  title: Controller tests cover the per-panel engine override, the jar debounce and its cancellation
+  description: >
+    The bundle and manifest tests pin the selector wiring and settings.
+    Revision 2 adds behaviour: switching to plantuml.jar schedules one
+    debounced render, a newer request aborts the in-flight child, and
+    disposing the panel clears the override so the next panel follows
+    the setting again.
+  method: test
+  test_ids:
+    - "tests/preview.test.ts::engine selection"
+    - "tests/manifest.test.ts::render engine settings"
+    - "tests/clientPreview.test.ts::engine override and jar debounce"
+  status: APPROVED

@@ -1,71 +1,68 @@
 # plantuml-vscode
 
+<!-- folio: colophon --project plantuml-vscode --junit test-results/junit.xml --coverage_ut test-results/coverage/cobertura-coverage.xml -->
+![powered by: argos](https://img.shields.io/badge/powered%20by-argos-1f6feb) ![traced: 100%](https://img.shields.io/badge/traced-100%25-2ea44f) ![verified: 100%](https://img.shields.io/badge/verified-100%25-2ea44f) ![tests: 100%](https://img.shields.io/badge/tests-100%25-2ea44f) ![UT: 54%](https://img.shields.io/badge/UT-54%25-e05d44) ![ST: n/a](https://img.shields.io/badge/ST-n%2Fa-lightgrey) ![diagnostics: 0](https://img.shields.io/badge/diagnostics-0-2ea44f)
+
+> **plantuml-vscode** is powered by **argos**. **folio** generates this documentation from the repository's model: 7 requirements · 7 verifications · 0 constraints. Quality: 100% traced to code · 100% verified · 100% tests passing · 54% UT coverage.
+<!-- /folio -->
+
 VS Code extension for the
-[deriva/plantuml](https://gitlab.semantiqa.dev/deriva/plantuml) toolchain —
-the pack that brings the family into the editor.
+[deriva/plantuml](https://github.com/derivasoftware) toolchain:
+the family in the editor.
 
-## What you get
+## Install
 
-- **Self-contained live preview** (`PlantUML: Open Preview`, editor-title
-  button): the tree-sitter grammar compiled to wasm plus the
-  [plantuml-render](https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-render)
-  engine run inside the webview — deterministic SVG on every keystroke,
-  **no Java, no server, no native binaries**. Renders the class-diagram
-  subset; unsupported constructs simply don't draw. `!include` /
-  `!includesub` aggregates expand before rendering.
-
-- **Interactive, read-only**: drag entities, notes and whole namespaces
-  (containers re-fit around their children; positions survive live
-  re-renders thanks to stable ids), toggle members / namespaces / notes
-  off with pure IR filters, pan the canvas and zoom around the cursor.
-  Reset buttons restore layout and view; the source is never touched.
-
-See [`doc/preview.md`](doc/preview.md) for the full preview guide and
-[`doc/settings.md`](doc/settings.md) for the settings reference and
-troubleshooting.
-
-- **Two engines, one preview**: the toolbar switches between the
-  bundled **native** engine (interactive, editor-themed, class subset)
-  and the official **plantuml.jar** (full PlantUML fidelity, static —
-  pan/zoom only). Configure `plantuml.render.jarPath` (+ optionally
-  `plantuml.render.javaPath`) and pick a default with
-  `plantuml.render.engine`. The jar runs with the document's directory
-  as cwd so it resolves its own `!include`s, renders dark when the
-  editor is dark, and is never bundled; if it fails, the preview falls
-  back to the native render and says why. Nothing leaves the machine.
-
-- **Language registration** for `.puml` / `.plantuml` / `.iuml` / `.wsd`
-  with comment toggling (`'`, `/' '/`), bracket pairs and word rules.
-- **Syntax highlighting** via a TextMate grammar mirroring the
-  tree-sitter grammar's supported subset (VS Code does not consume
-  tree-sitter grammars natively; Neovim/Helix/Zed use ours directly).
-- **Language server**: spawns
-  [plantuml-lsp](https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-lsp)
-  for live parse diagnostics, document symbols, go-to-definition across
-  `!includesub` / `!include`, and formatting through
-  [plantuml-fmt](https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-fmt).
-
-## Setup
-
-1. Install the server: `pip install plantuml-lsp` (or point
-   `plantuml.lsp.path` at a venv binary).
-2. Install the extension from the `.vsix` (built by CI on release tags,
-   published to this project's generic package registry):
-   `code --install-extension plantuml-vscode-<version>.vsix`.
-
-Settings: `plantuml.lsp.path` (default `plantuml-lsp`),
-`plantuml.lsp.enabled` (default `true`).
-
-## Development
+1. Install the language server:
+   `pip install git+https://github.com/derivasoftware/plantuml-lsp.git@v0.7.2`
+   (or point `plantuml.lsp.path` at a venv binary).
+2. Install the extension from the `.vsix` the CI builds on release tags
+   (published to the project's generic package registry):
 
 ```bash
-npm install
-npm test          # tsc + vitest
-npm run package   # build the .vsix locally
+code --install-extension plantuml-vscode-<version>.vsix
 ```
 
-## Governance
+Or build it from a clone: `npm ci && npm run package`.
 
-An [argos](https://gitlab.semantiqa.dev/deriva/argos/argos) NA project:
-input requirements in `input/`, requirements and verifications in
-`requirements/` and `verifications/`. See `CLAUDE.md`.
+## Use cases
+
+**Live preview** (`PlantUML: Open Preview`): the tree-sitter grammar
+compiled to wasm plus the plantuml-render engine run inside the webview.
+Deterministic SVG on every keystroke; no Java, no server, no native
+binaries. Interactive and read-only: drag entities, notes and whole
+namespaces, filter members and containers, pan and zoom; includes expand
+before rendering and the source is never touched.
+
+**Full-fidelity fallback**: the toolbar switches to the official
+`plantuml.jar` (configure `plantuml.render.jarPath`). The jar renders
+with the document's directory as cwd, follows the editor theme, and if
+it fails the preview falls back to the native render and says why.
+Nothing leaves the machine.
+
+**Language intelligence**: spawns
+[plantuml-lsp](https://github.com/derivasoftware/plantuml-lsp)
+for parse diagnostics, document symbols, go-to-definition across
+includes and formatting through plantuml-fmt. Language registration for
+`.puml`, `.plantuml`, `.iuml` and `.wsd`, with TextMate highlighting
+mirroring the grammar's subset.
+
+## Scope
+
+The family covers a standard-driven subset of PlantUML, never the whole
+language. Class diagrams: 125 of 149 standard constructs structural;
+sequence: 70 of 111, with the lifecycle verbs (activate, ref, box,
+delays) still raw; activity: actions and swimlanes structural, control
+flow raw. Everything else (deployment, components, state, mindmaps,
+gantt) parses lossless as raw lines, never an ERROR, but gets no
+structure. The native preview draws the class subset
+interactively; the `plantuml.jar` fallback covers full fidelity.
+
+## Documentation
+
+- [Preview guide](doc/preview.md): the two engines, interaction, limits
+- [Settings reference](doc/settings.md): every setting and its default
+- [Architecture](doc/architecture.md): the model's diagrams, rendered from source
+- [Requirements & status](doc/requirements.md): what was asked and the traceability matrix
+- [Repo quality](doc/quality.md): artefact inventory and health metrics
+
+*Not affiliated with or endorsed by the PlantUML project.*

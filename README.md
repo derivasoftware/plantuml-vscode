@@ -1,19 +1,19 @@
 # plantuml-vscode
 
 <!-- folio: colophon --project plantuml-vscode --junit test-results/junit.xml --coverage_ut test-results/coverage/cobertura-coverage.xml -->
-![powered by: argos](https://img.shields.io/badge/powered%20by-argos-1f6feb) ![verified: 100%](https://img.shields.io/badge/verified-100%25-2ea44f) ![tests: 100%](https://img.shields.io/badge/tests-100%25-2ea44f) ![UT: 54%](https://img.shields.io/badge/UT-54%25-e05d44) ![ST: n/a](https://img.shields.io/badge/ST-n%2Fa-lightgrey) ![diagnostics: 0](https://img.shields.io/badge/diagnostics-0-2ea44f)
+![powered by: argos](https://img.shields.io/badge/powered%20by-argos-1f6feb) ![traced: 100%](https://img.shields.io/badge/traced-100%25-2ea44f) ![verified: 100%](https://img.shields.io/badge/verified-100%25-2ea44f) ![tests: 100%](https://img.shields.io/badge/tests-100%25-2ea44f) ![UT: 54%](https://img.shields.io/badge/UT-54%25-e05d44) ![ST: n/a](https://img.shields.io/badge/ST-n%2Fa-lightgrey) ![diagnostics: 0](https://img.shields.io/badge/diagnostics-0-2ea44f)
 
-> **plantuml-vscode** is powered by **argos**. **folio** generates this documentation from the repository's model: 7 requirements · 7 verifications · 0 constraints. Quality: 100% verified · 100% tests passing · 54% UT coverage.
+> **plantuml-vscode** is powered by **argos**. **folio** generates this documentation from the repository's model: 7 requirements · 7 verifications · 0 constraints. Quality: 100% traced to code · 100% verified · 100% tests passing · 54% UT coverage.
 <!-- /folio -->
 
 VS Code extension for the
-[deriva/plantuml](https://gitlab.semantiqa.dev/deriva/plantuml) toolchain:
+[deriva/plantuml](https://github.com/derivasoftware) toolchain:
 the family in the editor.
 
 ## Install
 
 1. Install the language server:
-   `pip install git+https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-lsp.git@v0.7.1`
+   `pip install git+https://github.com/derivasoftware/plantuml-lsp.git@v0.7.2`
    (or point `plantuml.lsp.path` at a venv binary).
 2. Install the extension from the `.vsix` the CI builds on release tags
    (published to the project's generic package registry):
@@ -40,7 +40,7 @@ it fails the preview falls back to the native render and says why.
 Nothing leaves the machine.
 
 **Language intelligence**: spawns
-[plantuml-lsp](https://gitlab.semantiqa.dev/deriva/plantuml/plantuml-lsp)
+[plantuml-lsp](https://github.com/derivasoftware/plantuml-lsp)
 for parse diagnostics, document symbols, go-to-definition across
 includes and formatting through plantuml-fmt. Language registration for
 `.puml`, `.plantuml`, `.iuml` and `.wsd`, with TextMate highlighting

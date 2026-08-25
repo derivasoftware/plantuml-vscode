@@ -1,4 +1,5 @@
-# CI — plantuml-vscode. Node-only: compile + vitest on MR/main; release
+# CI — plantuml-vscode. Node-only: compile + vitest on MR/main; the
+# render dependency installs from the public GitHub mirror; release
 # tags package the .vsix and push it to the generic package registry.
 
 include:
@@ -14,17 +15,10 @@ workflow:
     - if: $CI_COMMIT_BRANCH == "main"
     - if: $CI_COMMIT_TAG
 
-.git-auth: &git-auth
-  - export GIT_CONFIG_GLOBAL="$CI_PROJECT_DIR/.gitconfig-ci"
-  - git config --file "$GIT_CONFIG_GLOBAL"
-    url."https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/".insteadOf
-    "https://${CI_SERVER_HOST}/"
-
 test:
   stage: test
   extends: [.node-base, .on-mr-and-main]
   script:
-    - *git-auth
     - npm ci
     - mkdir -p test-results
     - npm run test:ci
@@ -35,7 +29,6 @@ package-vsix:
   rules:
     - if: $CI_COMMIT_TAG
   script:
-    - *git-auth
     - npm ci
     - npm run compile
     - npx vsce package --allow-missing-repository --baseContentUrl "${CI_PROJECT_URL}/-/raw/main/" --baseImagesUrl "${CI_PROJECT_URL}/-/raw/main/" -o plantuml-vscode-${CI_COMMIT_TAG}.vsix

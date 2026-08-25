@@ -2,20 +2,19 @@
 
 ## What was asked
 
-The system requirements, with a check for implemented and one per test
-suite. No argos reader models TypeScript yet, so the implemented column
-and the verification test ids read from that gap; the junit evidence
-below is what the last run actually executed.
+The system requirements, with a check for implemented (its requirements
+land on diagrams that resolve to code) and one per test suite: the junit
+evidence is what the last run actually executed.
 
 <!-- folio: sreqs --junit test-results/junit.xml -->
 | SREQ | Title | Implemented | UT | ST |
 | --- | --- | --- | --- | --- |
-| `SREQ-00001-1` | The extension shall bundle the PlantUML toolchain for VS Code | ? | ~ | ? |
-| `SREQ-00002-1` | The extension shall register the plantuml language with highlighting | ? | ✓ | ? |
-| `SREQ-00003-1` | The extension shall launch the plantuml-lsp language client | ? | ✓ | ? |
-| `SREQ-00004-1` | The pipeline shall package the extension as an installable vsix on release tags | ? | ✗ | ✗ |
-| `SREQ-00005-1` | The extension shall preview diagrams interactively in a self-contained webview | ? | ✓ | ? |
-| `SREQ-00006-1` | The preview shall render through the official PlantUML jar as a selectable engine | ? | ✓ | ? |
+| `SREQ-00001-1` | The extension shall bundle the PlantUML toolchain for VS Code | ✓ | ~ | ? |
+| `SREQ-00002-1` | The extension shall register the plantuml language with highlighting | ✓ | ✓ | ? |
+| `SREQ-00003-1` | The extension shall launch the plantuml-lsp language client | ✓ | ✓ | ? |
+| `SREQ-00004-1` | The pipeline shall package the extension as an installable vsix on release tags | ✓ | ✗ | ✗ |
+| `SREQ-00005-1` | The extension shall preview diagrams interactively in a self-contained webview | ✓ | ✓ | ? |
+| `SREQ-00006-1` | The preview shall render through the official PlantUML jar as a selectable engine | ✓ | ✓ | ? |
 <!-- /folio -->
 
 ## Total traceability

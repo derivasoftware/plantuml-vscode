@@ -1,9 +1,9 @@
 # plantuml-vscode
 
 <!-- folio: colophon --project plantuml-vscode --junit test-results/junit.xml --coverage_ut test-results/coverage/cobertura-coverage.xml -->
-![powered by: argos](https://img.shields.io/badge/powered%20by-argos-1f6feb) ![verified: 100%](https://img.shields.io/badge/verified-100%25-2ea44f) ![tests: 100%](https://img.shields.io/badge/tests-100%25-2ea44f) ![UT: 11%](https://img.shields.io/badge/UT-11%25-e05d44) ![ST: n/a](https://img.shields.io/badge/ST-n%2Fa-lightgrey) ![diagnostics: 11](https://img.shields.io/badge/diagnostics-11-dfb317)
+![powered by: argos](https://img.shields.io/badge/powered%20by-argos-1f6feb) ![verified: 100%](https://img.shields.io/badge/verified-100%25-2ea44f) ![tests: 100%](https://img.shields.io/badge/tests-100%25-2ea44f) ![UT: 54%](https://img.shields.io/badge/UT-54%25-e05d44) ![ST: n/a](https://img.shields.io/badge/ST-n%2Fa-lightgrey) ![diagnostics: 15](https://img.shields.io/badge/diagnostics-15-dfb317)
 
-> **plantuml-vscode** is powered by **argos**. **folio** generates this documentation from the repository's model: 7 requirements · 7 verifications · 0 constraints. Quality: 100% verified · 100% tests passing · 11% UT coverage.
+> **plantuml-vscode** is powered by **argos**. **folio** generates this documentation from the repository's model: 7 requirements · 7 verifications · 0 constraints. Quality: 100% verified · 100% tests passing · 54% UT coverage.
 <!-- /folio -->
 
 VS Code extension for the

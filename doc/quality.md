@@ -26,10 +26,10 @@ unbacked HLD claims), stated here until that reader exists.
 | Source files | 0 |
 | Source lines | 0 |
 | Documentation files | 6 |
-| Documentation lines (authored) | 179 |
-| Tests executed (UT) | 24 |
+| Documentation lines (authored) | 192 |
+| Tests executed (UT) | 37 |
 | Tests executed (ST) | ? |
-| UT line coverage | 11% |
+| UT line coverage | 54% |
 | ST line coverage | ? |
-| argos diagnostics | 11 |
+| argos diagnostics | 15 |
 <!-- /folio -->

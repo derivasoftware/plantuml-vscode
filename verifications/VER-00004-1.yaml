@@ -1,9 +1,0 @@
-verification:
-  id: VER-00004-1
-  req_id: REQ-00004-1
-  title: Bundle tests prove the shipped webview carries parser, engine and no eval
-  description: >
-    Bundle tests prove the shipped webview carries parser, engine and no eval
-  method: test
-  test_ids:
-    - tests/preview.test.ts::webview pipeline

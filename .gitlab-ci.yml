@@ -15,10 +15,20 @@ workflow:
     - if: $CI_COMMIT_BRANCH == "main"
     - if: $CI_COMMIT_TAG
 
+# The manifest points the render dependency at the public GitHub mirror;
+# the rewrite resolves it against this GitLab's own project (same repo,
+# local network, job-token auth).
+.git-mirror-local: &git-mirror-local
+  - export GIT_CONFIG_GLOBAL="$CI_PROJECT_DIR/.gitconfig-ci"
+  - git config --file "$GIT_CONFIG_GLOBAL"
+    url."https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/deriva/plantuml/".insteadOf
+    "https://github.com/derivasoftware/"
+
 test:
   stage: test
   extends: [.node-base, .on-mr-and-main]
   script:
+    - *git-mirror-local
     - npm ci
     - mkdir -p test-results
     - npm run test:ci
@@ -29,6 +39,7 @@ package-vsix:
   rules:
     - if: $CI_COMMIT_TAG
   script:
+    - *git-mirror-local
     - npm ci
     - npm run compile
     - npx vsce package --allow-missing-repository --baseContentUrl "${CI_PROJECT_URL}/-/raw/main/" --baseImagesUrl "${CI_PROJECT_URL}/-/raw/main/" -o plantuml-vscode-${CI_COMMIT_TAG}.vsix

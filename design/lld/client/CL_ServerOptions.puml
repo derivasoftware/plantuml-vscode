@@ -4,8 +4,10 @@
 !startsub ServerOptionsModule
 
 namespace client.serverOptions {
-  class "<<module>>" as ServerOptionsModule {
+  class resolveServerCommand <<function>> {
     + resolveServerCommand(configuredPath: string | undefined) : string
+  }
+  class documentSelector <<function>> {
     + documentSelector() : { scheme: string; language: string }[]
   }
 }

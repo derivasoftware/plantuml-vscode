@@ -4,8 +4,10 @@
 !startsub JarRendererModule
 
 namespace client.jarRenderer {
-  class "<<module>>" as JarRendererModule {
+  class jarArgs <<function>> {
     + jarArgs(cfg: JarConfig) : string[]
+  }
+  class renderWithJar <<function>> {
     + renderWithJar(source: string, cwd: string, cfg: JarConfig, signal: AbortSignal) : Promise<JarResult>
   }
 }

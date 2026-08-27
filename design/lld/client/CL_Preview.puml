@@ -5,14 +5,8 @@
 !startsub PreviewModule
 
 namespace client.preview {
-  class "<<module>>" as PreviewModule {
+  class registerPreview <<function>> {
     + registerPreview(context: ExtensionContext) : void
-    - engineConfig() : { engine: string; jarPath: string; javaPath: string }
-    - activePlantumlDocument() : TextDocument | undefined
-    - showPreview(context: ExtensionContext) : void
-    - postSource(doc: TextDocument) : void
-    - scheduleJarRender(doc: TextDocument) : void
-    - html(webview: Webview, cfg: PreviewConfig, nonce: string) : string
   }
 }
 

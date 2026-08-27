@@ -5,11 +5,12 @@
 !startsub ExtensionModule
 
 namespace client.extension {
-  class "<<module>>" as ExtensionModule {
+  class activate <<function>> {
     + activate(context: ExtensionContext) : Promise<void>
+  }
+  class deactivate <<function>> {
     + deactivate() : Promise<void>
   }
-  ExtensionModule ..> client.serverOptions.ServerOptionsModule
 }
 
 !endsub

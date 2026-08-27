@@ -5,20 +5,11 @@
 !startsub WebviewPreviewModule
 
 namespace webview.preview {
-  class "<<module>>" as WebviewPreviewModule {
-    - currentIr() : RenderIr | null
-    - rerender() : void
-    - status(text: string) : void
-    - setEngine(next: string) : void
-    - showJarResult(msg: { ok: boolean; svg?: string; error?: string }) : void
-    - applyView() : void
-    - draggableGroup(target: EventTarget | null) : SVGGElement | null
-    - onPointerDown(ev: PointerEvent) : void
-    - onPointerMove(ev: PointerEvent) : void
-    - onPointerUp() : void
-    - onWheel(ev: WheelEvent) : void
-    - wireToolbar() : void
-    - init() : Promise<void>
+  class init <<function>> {
+    + init() : Promise<void>
+  }
+  class rerender <<function>> {
+    + rerender() : void
   }
 }
 

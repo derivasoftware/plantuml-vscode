@@ -13,7 +13,7 @@ the family in the editor.
 ## Install
 
 1. Install the language server:
-   `pip install git+https://github.com/derivasoftware/plantuml-lsp.git@v0.7.3`
+   `pip install git+https://github.com/derivasoftware/plantuml-lsp.git@v0.7.7`
    (or point `plantuml.lsp.path` at a venv binary).
 2. Install the extension from the `.vsix` the CI builds on release tags
    (published to the project's generic package registry):

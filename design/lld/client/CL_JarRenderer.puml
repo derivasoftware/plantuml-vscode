@@ -5,10 +5,10 @@
 
 namespace client.jarRenderer {
   class jarArgs <<function>> {
-    + jarArgs(cfg: JarConfig) : string[]
+    + jarArgs()
   }
   class renderWithJar <<function>> {
-    + renderWithJar(source: string, cwd: string, cfg: JarConfig, signal: AbortSignal) : Promise<JarResult>
+    + renderWithJar()
   }
 }
 

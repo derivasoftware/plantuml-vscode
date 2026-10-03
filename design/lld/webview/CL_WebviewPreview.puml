@@ -6,10 +6,52 @@
 
 namespace webview.preview {
   class init <<function>> {
-    + init() : Promise<void>
+    + init()
   }
   class rerender <<function>> {
-    + rerender() : void
+    + rerender()
+  }
+  class applyView <<function>> {
+    + applyView()
+  }
+  class currentIr <<function>> {
+    + currentIr()
+  }
+  class draggableGroup <<function>> {
+    + draggableGroup()
+  }
+  class onPointerDown <<function>> {
+    + onPointerDown()
+  }
+  class onPointerMove <<function>> {
+    + onPointerMove()
+  }
+  class onPointerUp <<function>> {
+    + onPointerUp()
+  }
+  class onWheel <<function>> {
+    + onWheel()
+  }
+  class queueRender <<function>> {
+    + queueRender()
+  }
+  class root <<function>> {
+    + root()
+  }
+  class setEngine <<function>> {
+    + setEngine()
+  }
+  class showJarResult <<function>> {
+    + showJarResult()
+  }
+  class stage <<function>> {
+    + stage()
+  }
+  class status <<function>> {
+    + status()
+  }
+  class wireToolbar <<function>> {
+    + wireToolbar()
   }
 }
 

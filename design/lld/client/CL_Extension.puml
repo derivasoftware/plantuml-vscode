@@ -6,10 +6,10 @@
 
 namespace client.extension {
   class activate <<function>> {
-    + activate(context: ExtensionContext) : Promise<void>
+    + activate()
   }
   class deactivate <<function>> {
-    + deactivate() : Promise<void>
+    + deactivate()
   }
 }
 

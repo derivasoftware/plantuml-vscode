@@ -6,7 +6,25 @@
 
 namespace client.preview {
   class registerPreview <<function>> {
-    + registerPreview(context: ExtensionContext) : void
+    + registerPreview()
+  }
+  class activePlantumlDocument <<function>> {
+    + activePlantumlDocument()
+  }
+  class engineConfig <<function>> {
+    + engineConfig()
+  }
+  class html <<function>> {
+    + html()
+  }
+  class postSource <<function>> {
+    + postSource()
+  }
+  class scheduleJarRender <<function>> {
+    + scheduleJarRender()
+  }
+  class showPreview <<function>> {
+    + showPreview()
   }
 }
 

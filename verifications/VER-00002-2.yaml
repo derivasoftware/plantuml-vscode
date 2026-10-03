@@ -11,7 +11,11 @@ verification:
     stops a running client. Revision 2 adds the activation cases.
   method: test
   test_ids:
-    - "tests/serverOptions.test.ts::resolveServerCommand"
-    - "tests/serverOptions.test.ts::documentSelector"
-    - "tests/extensionActivation.test.ts::activation"
+    - "tests/integration/serverOptions.test.ts::falls back to the default command"
+    - "tests/integration/serverOptions.test.ts::honours a configured path"
+    - "tests/integration/serverOptions.test.ts::targets file-scheme plantuml documents"
+    - "tests/integration/extensionActivation.test.ts::skips the language client when lsp.enabled is false"
+    - "tests/integration/extensionActivation.test.ts::starts the client with the configured server path"
+    - "tests/integration/extensionActivation.test.ts::degrades to a warning when the server cannot start"
+    - "tests/integration/extensionActivation.test.ts::stops the running client on deactivate"
   status: APPROVED

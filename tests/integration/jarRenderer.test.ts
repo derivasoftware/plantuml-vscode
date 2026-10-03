@@ -4,9 +4,9 @@ import { join } from "node:path";
 
 import { beforeAll, describe, expect, it } from "vitest";
 
-import { jarArgs, renderWithJar } from "../src/client/jarRenderer";
+import { jarArgs, renderWithJar } from "../../src/client/jarRenderer";
 
-const FAKE_JAVA = join(__dirname, "fixtures", "fake-java.mjs");
+const FAKE_JAVA = join(__dirname, "..", "fixtures", "fake-java.mjs");
 const CFG = { javaPath: FAKE_JAVA, jarPath: "/opt/plantuml.jar" };
 
 beforeAll(() => {

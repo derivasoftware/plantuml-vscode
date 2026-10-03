@@ -7,18 +7,18 @@
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as stub from "./stubs/vscode";
+import * as stub from "../stubs/vscode";
 
-vi.mock("vscode", () => import("./stubs/vscode"));
+vi.mock("vscode", () => import("../stubs/vscode"));
 vi.mock("plantuml-render/browser", () => ({
   expandIncludes: vi.fn(async (text: string) => `expanded:${text}`),
 }));
-vi.mock("../src/client/jarRenderer", () => ({
+vi.mock("../../src/client/jarRenderer", () => ({
   renderWithJar: vi.fn(async () => ({ svg: "<svg>jar</svg>", error: "" })),
 }));
 
-import { renderWithJar } from "../src/client/jarRenderer";
-import * as preview from "../src/client/preview";
+import { renderWithJar } from "../../src/client/jarRenderer";
+import * as preview from "../../src/client/preview";
 
 const context = {
   subscriptions: [] as unknown[],

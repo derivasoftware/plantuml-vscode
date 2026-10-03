@@ -4,7 +4,7 @@ import {
   DEFAULT_LSP_COMMAND,
   documentSelector,
   resolveServerCommand,
-} from "../src/client/serverOptions";
+} from "../../src/client/serverOptions";
 
 describe("resolveServerCommand", () => {
   it("falls back to the default command", () => {

@@ -6,4 +6,6 @@ verification:
     Manifest tests pin the language contribution
   method: test
   test_ids:
-    - tests/manifest.test.ts::language contribution
+    - "tests/integration/manifest.test.ts::registers the plantuml language with all four extensions"
+    - "tests/integration/manifest.test.ts::wires the TextMate grammar to the language"
+    - "tests/integration/manifest.test.ts::exposes the lsp path and enabled settings"

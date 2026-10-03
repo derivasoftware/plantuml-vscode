@@ -10,7 +10,12 @@ verification:
     the setting again.
   method: test
   test_ids:
-    - "tests/preview.test.ts::engine selection"
-    - "tests/manifest.test.ts::render engine settings"
-    - "tests/clientPreview.test.ts::engine override and jar debounce"
+    - "tests/integration/preview.test.ts::wires the engine selector and the jar result message"
+    - "tests/integration/preview.test.ts::falls back to the native render when the jar fails"
+    - "tests/integration/preview.test.ts::never pulls node builtins into the webview"
+    - "tests/integration/manifest.test.ts::exposes the engine choice with native default"
+    - "tests/integration/manifest.test.ts::exposes jar and java paths, jar unbundled by default"
+    - "tests/integration/clientPreview.test.ts::switching to plantuml.jar schedules one debounced render"
+    - "tests/integration/clientPreview.test.ts::a newer request aborts the in-flight jar render"
+    - "tests/integration/clientPreview.test.ts::disposing the panel clears the engine override"
   status: APPROVED

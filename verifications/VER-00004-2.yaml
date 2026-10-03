@@ -10,7 +10,12 @@ verification:
     on active-document edits and render-configuration changes.
   method: test
   test_ids:
-    - "tests/preview.test.ts::webview pipeline"
-    - "tests/clientPreview.test.ts::panel lifecycle"
-    - "tests/clientPreview.test.ts::message protocol"
+    - "tests/integration/preview.test.ts::bundles the wasm parser and the render engine"
+    - "tests/integration/preview.test.ts::never reaches for eval \u2014 CSP allows wasm only"
+    - "tests/integration/clientPreview.test.ts::asks for a .puml file when none is active"
+    - "tests/integration/clientPreview.test.ts::creates one panel and reveals it on the second invocation"
+    - "tests/integration/clientPreview.test.ts::serves nonce-locked CSP html carrying both wasm uris"
+    - "tests/integration/clientPreview.test.ts::answers the webview's ready with the expanded source"
+    - "tests/integration/clientPreview.test.ts::re-posts on active-document edits and ignores other documents"
+    - "tests/integration/clientPreview.test.ts::re-posts when the render configuration changes"
   status: APPROVED

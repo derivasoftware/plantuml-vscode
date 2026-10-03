@@ -6,4 +6,6 @@ verification:
     Bundle tests prove filter, drag and reset wiring ships in the webview
   method: test
   test_ids:
-    - tests/preview.test.ts::interactive preview
+    - "tests/integration/preview.test.ts::wires the three detail filters to IR projections"
+    - "tests/integration/preview.test.ts::drags boxes, notes and containers via position overrides"
+    - "tests/integration/preview.test.ts::offers layout and view resets"

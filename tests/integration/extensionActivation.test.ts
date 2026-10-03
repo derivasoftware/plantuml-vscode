@@ -5,9 +5,9 @@
  */
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as stub from "./stubs/vscode";
+import * as stub from "../stubs/vscode";
 
-vi.mock("vscode", () => import("./stubs/vscode"));
+vi.mock("vscode", () => import("../stubs/vscode"));
 vi.mock("plantuml-render/browser", () => ({
   expandIncludes: vi.fn(async (text: string) => text),
 }));
@@ -33,7 +33,7 @@ vi.mock("vscode-languageclient/node", () => ({
   },
 }));
 
-import { activate, deactivate } from "../src/client/extension";
+import { activate, deactivate } from "../../src/client/extension";
 
 function context() {
   return { subscriptions: [] as unknown[], extensionUri: "ext:" } as never;

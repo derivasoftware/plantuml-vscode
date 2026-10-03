@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { build } from "esbuild";
 import { beforeAll, describe, expect, it } from "vitest";
 
-const root = join(__dirname, "..");
+const root = join(__dirname, "..", "..");
 let bundle = "";
 
 // Build the webview exactly as `npm run bundle` does (unminified, so

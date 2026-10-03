@@ -5,10 +5,10 @@
 
 namespace client.serverOptions {
   class resolveServerCommand <<function>> {
-    + resolveServerCommand(configuredPath: string | undefined) : string
+    + resolveServerCommand()
   }
   class documentSelector <<function>> {
-    + documentSelector() : { scheme: string; language: string }[]
+    + documentSelector()
   }
 }
 

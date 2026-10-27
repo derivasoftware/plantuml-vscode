@@ -9,7 +9,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as stub from "../stubs/vscode";
 
 vi.mock("vscode", () => import("../stubs/vscode"));
-vi.mock("plantuml-render/browser", () => ({
+vi.mock("plantuml-render/preprocess", () => ({
   expandIncludes: vi.fn(async (text: string) => `expanded:${text}`),
 }));
 import * as preview from "../../src/client/preview";
@@ -95,4 +95,23 @@ describe("message protocol", () => {
     expect(after).toBeGreaterThan(0);
     expect(panel.webview.postMessage.mock.calls.length).toBe(after);
   });
+});
+
+describe("host bundle", () => {
+  it("carries include expansion and no layout engine", async () => {
+    const { build } = await import("esbuild");
+    const { join } = await import("node:path");
+    const result = await build({
+      entryPoints: [join(__dirname, "..", "..", "src/client/extension.ts")],
+      bundle: true,
+      format: "cjs",
+      platform: "node",
+      external: ["vscode"],
+      write: false,
+    });
+    const bundle = result.outputFiles[0].text;
+    expect(bundle).toContain("expandIncludes");
+    expect(bundle).not.toContain("org.eclipse.elk");
+    expect(bundle).not.toContain("renderSvg");
+  }, 30000);
 });

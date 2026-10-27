@@ -54,7 +54,7 @@ _cl · `design/lld/client/CL_Client.puml`_
 <ul>
 <li>source: <code>design/lld/client/CL_Preview.puml</code></li>
 <li>implemented in: <code>src/client/preview.ts</code></li>
-<li>verified by: <code>tests/integration/clientPreview.test.ts</code> (5)</li>
+<li>verified by: <code>tests/integration/clientPreview.test.ts</code> (6)</li>
 </ul>
 <p><img alt="CL_Preview" src="assets/CL_Preview.svg"></p>
 </details>

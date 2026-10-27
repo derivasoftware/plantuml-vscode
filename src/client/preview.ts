@@ -1,9 +1,6 @@
 import * as path from "node:path";
 
-import {
-  expandIncludes,
-  type IncludeLoader,
-} from "plantuml-render/browser";
+import { expandIncludes, type IncludeLoader } from "plantuml-render/preprocess";
 import * as vscode from "vscode";
 
 const loader: IncludeLoader = {

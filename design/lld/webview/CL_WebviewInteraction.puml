@@ -1,0 +1,35 @@
+@startuml CL_WebviewInteraction
+' requirement REQ-00005-1
+
+!startsub WebviewInteractionModule
+
+namespace webview.interaction {
+  class wireInteraction <<function>> {
+    + wireInteraction()
+  }
+  class draggableGroup <<function>> {
+    + draggableGroup()
+  }
+  class onPointerDown <<function>> {
+    + onPointerDown()
+  }
+  class onPointerMove <<function>> {
+    + onPointerMove()
+  }
+  class onPointerUp <<function>> {
+    + onPointerUp()
+  }
+  class onWheel <<function>> {
+    + onWheel()
+  }
+  class queueRender <<function>> {
+    + queueRender()
+  }
+  class wireToolbar <<function>> {
+    + wireToolbar()
+  }
+}
+
+!endsub
+
+@enduml

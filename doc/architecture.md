@@ -65,21 +65,40 @@ _cl · `design/lld/client/CL_Client.puml`_
 
 _cl · `design/lld/webview/CL_Webview.puml`_
 
-- traces to: `REQ-00004-1` `REQ-00005-1`
-- implemented in: `src/webview/preview.ts`
-- verified by: `tests/integration/preview.test.ts` (9)
+- traces to: `SREQ-00005-1`
+- implemented in: `src/webview/interaction.ts` · `src/webview/preview.ts` · `src/webview/render.ts`
 
 ![CL_Webview](assets/CL_Webview.svg)
 
 ### Class detail
 
 <details>
-<summary><code>CL_WebviewPreview</code> · traces to <code>REQ-00004-1</code> <code>REQ-00005-1</code></summary>
+<summary><code>CL_WebviewPreview</code> · traces to <code>REQ-00004-1</code></summary>
 <ul>
 <li>source: <code>design/lld/webview/CL_WebviewPreview.puml</code></li>
 <li>implemented in: <code>src/webview/preview.ts</code></li>
-<li>verified by: <code>tests/integration/preview.test.ts</code> (9)</li>
+<li>verified by: <code>tests/integration/preview.test.ts</code> (6)</li>
 </ul>
 <p><img alt="CL_WebviewPreview" src="assets/CL_WebviewPreview.svg"></p>
+</details>
+
+<details>
+<summary><code>CL_WebviewRender</code> · traces to <code>REQ-00004-1</code></summary>
+<ul>
+<li>source: <code>design/lld/webview/CL_WebviewRender.puml</code></li>
+<li>implemented in: <code>src/webview/render.ts</code></li>
+<li>verified by: <code>tests/integration/preview.test.ts</code> (6)</li>
+</ul>
+<p><img alt="CL_WebviewRender" src="assets/CL_WebviewRender.svg"></p>
+</details>
+
+<details>
+<summary><code>CL_WebviewInteraction</code> · traces to <code>REQ-00005-1</code></summary>
+<ul>
+<li>source: <code>design/lld/webview/CL_WebviewInteraction.puml</code></li>
+<li>implemented in: <code>src/webview/interaction.ts</code></li>
+<li>verified by: <code>tests/integration/preview.test.ts</code> (3)</li>
+</ul>
+<p><img alt="CL_WebviewInteraction" src="assets/CL_WebviewInteraction.svg"></p>
 </details>
 <!-- /folio -->

@@ -1,6 +1,5 @@
 @startuml CL_Preview
 ' requirement REQ-00004-1
-' requirement REQ-00007-1
 
 !startsub PreviewModule
 
@@ -11,17 +10,11 @@ namespace client.preview {
   class activePlantumlDocument <<function>> {
     + activePlantumlDocument()
   }
-  class engineConfig <<function>> {
-    + engineConfig()
-  }
   class html <<function>> {
     + html()
   }
   class postSource <<function>> {
     + postSource()
-  }
-  class scheduleJarRender <<function>> {
-    + scheduleJarRender()
   }
   class showPreview <<function>> {
     + showPreview()

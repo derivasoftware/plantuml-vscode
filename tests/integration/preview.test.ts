@@ -72,15 +72,10 @@ describe("interactive preview", () => {
   });
 });
 
-describe("engine selection", () => {
-  it("wires the engine selector and the jar result message", () => {
-    expect(bundle).toContain('"engine"');
-    expect(bundle).toContain("jar-svg");
-    expect(bundle).toContain("plantuml.jar");
-  });
-
-  it("falls back to the native render when the jar fails", () => {
-    expect(bundle).toContain("showing native render");
+describe("one engine", () => {
+  it("renders with the bundled engine only, no jar path ships", () => {
+    expect(bundle).not.toContain("plantuml.jar");
+    expect(bundle).not.toContain("jar-svg");
   });
 
   it("never pulls node builtins into the webview", () => {

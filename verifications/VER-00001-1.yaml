@@ -9,3 +9,4 @@ verification:
     - "tests/integration/manifest.test.ts::registers the plantuml language with all four extensions"
     - "tests/integration/manifest.test.ts::wires the TextMate grammar to the language"
     - "tests/integration/manifest.test.ts::exposes the lsp path and enabled settings"
+    - "tests/integration/manifest.test.ts::contributes no engine, jar or java setting"

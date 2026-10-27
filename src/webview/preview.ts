@@ -33,7 +33,6 @@ const vscode = acquireVsCodeApi();
 
 let parser: Parser | undefined;
 let source = "";
-let engine: "native" | "plantuml" = "native";
 const positions: Record<string, { dx: number; dy: number }> = {};
 const filters = { members: true, namespaces: true, notes: true };
 const view = { x: 0, y: 0, scale: 1 };
@@ -70,45 +69,6 @@ async function rerender(): Promise<void> {
   } catch (err) {
     if (generation !== renderGeneration) return;
     root().innerHTML = `<pre class="error">${String(err)}</pre>`;
-  }
-}
-
-// ── Engine switching ─────────────────────────────────────────────────────────
-
-function status(text: string): void {
-  const el = document.getElementById("status");
-  if (el) el.textContent = text;
-}
-
-// The jar produces foreign SVG: no stable ids, no theming contract —
-// drag and IR filters cannot apply, pan/zoom and reset view still do.
-function setEngine(next: "native" | "plantuml"): void {
-  engine = next;
-  const select = document.getElementById("engine") as HTMLSelectElement | null;
-  if (select && select.value !== next) select.value = next;
-  const interactive = next === "native";
-  for (const id of ["f-members", "f-namespaces", "f-notes"]) {
-    document.getElementById(id)?.parentElement?.classList.toggle("off", !interactive);
-  }
-  document.getElementById("reset-layout")?.classList.toggle("off", !interactive);
-  if (interactive) {
-    status("");
-    void rerender();
-  } else {
-    status("rendering with plantuml.jar…");
-  }
-}
-
-function showJarResult(msg: { ok: boolean; svg?: string; error?: string }): void {
-  if (engine !== "plantuml") return;
-  if (msg.ok && msg.svg) {
-    status("");
-    root().innerHTML = msg.svg;
-    applyView();
-  } else {
-    // Graceful fallback: keep a usable preview and say why.
-    status(`plantuml.jar: ${msg.error ?? "failed"} — showing native render`);
-    void rerender();
   }
 }
 
@@ -224,12 +184,6 @@ function wireToolbar(): void {
   bind("f-members", "members");
   bind("f-namespaces", "namespaces");
   bind("f-notes", "notes");
-  const select = document.getElementById("engine") as HTMLSelectElement;
-  select.addEventListener("change", () => {
-    const next = select.value === "plantuml" ? "plantuml" : "native";
-    setEngine(next);
-    vscode.postMessage({ type: "engine", engine: next });
-  });
   document.getElementById("reset-layout")!.addEventListener("click", () => {
     for (const key of Object.keys(positions)) delete positions[key];
     void rerender();
@@ -272,21 +226,10 @@ async function init(): Promise<void> {
   wireToolbar();
 
   window.addEventListener("message", (event) => {
-    const msg = event.data as {
-      type: string;
-      text?: string;
-      engine?: "native" | "plantuml";
-      ok?: boolean;
-      svg?: string;
-      error?: string;
-    };
+    const msg = event.data as { type: string; text?: string };
     if (msg.type === "source" && typeof msg.text === "string") {
       source = msg.text;
-      if (msg.engine && msg.engine !== engine) setEngine(msg.engine);
-      if (engine === "native") void rerender();
-      else status("rendering with plantuml.jar…");
-    } else if (msg.type === "jar-svg") {
-      showJarResult({ ok: !!msg.ok, svg: msg.svg, error: msg.error });
+      void rerender();
     }
   });
 

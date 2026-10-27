@@ -1,51 +1,11 @@
 @startuml CL_WebviewPreview
 ' requirement REQ-00004-1
-' requirement REQ-00005-1
 
 !startsub WebviewPreviewModule
 
 namespace webview.preview {
   class init <<function>> {
     + init()
-  }
-  class rerender <<function>> {
-    + rerender()
-  }
-  class applyView <<function>> {
-    + applyView()
-  }
-  class currentIr <<function>> {
-    + currentIr()
-  }
-  class draggableGroup <<function>> {
-    + draggableGroup()
-  }
-  class onPointerDown <<function>> {
-    + onPointerDown()
-  }
-  class onPointerMove <<function>> {
-    + onPointerMove()
-  }
-  class onPointerUp <<function>> {
-    + onPointerUp()
-  }
-  class onWheel <<function>> {
-    + onWheel()
-  }
-  class queueRender <<function>> {
-    + queueRender()
-  }
-  class root <<function>> {
-    + root()
-  }
-  class stage <<function>> {
-    + stage()
-  }
-  class wireToolbar <<function>> {
-    + wireToolbar()
-  }
-  class syncTheme <<function>> {
-    + syncTheme()
   }
 }
 

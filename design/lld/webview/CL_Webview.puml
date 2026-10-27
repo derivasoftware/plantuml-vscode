@@ -1,9 +1,16 @@
 @startuml CL_Webview
-' requirement REQ-00004-1
-' requirement REQ-00005-1
+' requirement SREQ-00005-1
 
 !startsub WebviewPreviewModule
 !includesub ./CL_WebviewPreview.puml!WebviewPreviewModule
+!endsub
+
+!startsub WebviewRenderModule
+!includesub ./CL_WebviewRender.puml!WebviewRenderModule
+!endsub
+
+!startsub WebviewInteractionModule
+!includesub ./CL_WebviewInteraction.puml!WebviewInteractionModule
 !endsub
 
 @enduml

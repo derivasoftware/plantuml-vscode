@@ -1,6 +1,6 @@
 verification:
   id: VER-00002-2
-  req_id: REQ-00002-1
+  req_id: REQ-00002-2
   title: Server-option and activation tests cover resolution, the safe default and startup degradation
   description: >
     The pure tests cover command resolution and the document selector;

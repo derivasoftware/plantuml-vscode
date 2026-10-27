@@ -40,3 +40,13 @@ describe("render settings", () => {
     expect(Object.keys(props).filter((k) => k.startsWith("plantuml.render"))).toEqual([]);
   });
 });
+
+describe("preview contribution", () => {
+  it("contributes the preview command and editor-title menu", () => {
+    const commands = manifest.contributes.commands;
+    expect(commands[0].command).toBe("plantuml.showPreview");
+    const menu = manifest.contributes.menus["editor/title"][0];
+    expect(menu.command).toBe("plantuml.showPreview");
+    expect(menu.when).toContain("plantuml");
+  });
+});

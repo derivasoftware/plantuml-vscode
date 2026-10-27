@@ -10,3 +10,4 @@ verification:
     - "tests/integration/manifest.test.ts::wires the TextMate grammar to the language"
     - "tests/integration/manifest.test.ts::exposes the lsp path and enabled settings"
     - "tests/integration/manifest.test.ts::contributes no engine, jar or java setting"
+    - "tests/integration/manifest.test.ts::contributes the preview command and editor-title menu"

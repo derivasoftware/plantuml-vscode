@@ -1,0 +1,35 @@
+@startuml CL_WebviewRender
+' requirement REQ-00004-1
+
+!startsub WebviewRenderModule
+
+namespace webview.render {
+  class rerender <<function>> {
+    + rerender()
+  }
+  class applyView <<function>> {
+    + applyView()
+  }
+  class currentIr <<function>> {
+    + currentIr()
+  }
+  class loadParser <<function>> {
+    + loadParser()
+  }
+  class root <<function>> {
+    + root()
+  }
+  class setSource <<function>> {
+    + setSource()
+  }
+  class stage <<function>> {
+    + stage()
+  }
+  class syncTheme <<function>> {
+    + syncTheme()
+  }
+}
+
+!endsub
+
+@enduml

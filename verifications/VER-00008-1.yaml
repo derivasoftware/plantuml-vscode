@@ -1,0 +1,14 @@
+verification:
+  id: VER-00008-1
+  req_id: REQ-00008-1
+  title: Controller tests drive the panel lifecycle and the source protocol against a stubbed editor
+  description: >
+    The controller tests drive client/preview.ts against a stubbed vscode and include expander: the command asks for a plantuml file when none is active, creates one panel and reveals it on the second invocation, serves nonce-locked CSP html carrying both wasm uris, answers the webview's ready with the include-expanded source, and re-posts on active-document edits while ignoring other documents.
+  method: test
+  test_ids:
+    - tests/integration/clientPreview.test.ts::asks for a .puml file when none is active
+    - tests/integration/clientPreview.test.ts::creates one panel and reveals it on the second invocation
+    - tests/integration/clientPreview.test.ts::serves nonce-locked CSP html carrying both wasm uris
+    - tests/integration/clientPreview.test.ts::answers the webview's ready with the expanded source
+    - tests/integration/clientPreview.test.ts::re-posts on active-document edits and ignores other documents
+  status: APPROVED

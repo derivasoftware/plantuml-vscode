@@ -6,6 +6,7 @@ requirement:
   rationale: >
     package.json contributes the language (four extensions), wires the TextMate grammar to source.plantuml, and exposes plantuml.lsp.path / plantuml.lsp.enabled.
   status: APPROVED
+  design_optional: true
   asil: QM
   parent_ids:
     - SREQ-00002-1

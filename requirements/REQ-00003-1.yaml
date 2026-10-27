@@ -6,6 +6,7 @@ requirement:
   rationale: >
     package-vsix compiles, runs vsce package with dependencies bundled and uploads to the generic registry under the tag version.
   status: APPROVED
+  design_optional: true
   asil: QM
   parent_ids:
     - SREQ-00004-1

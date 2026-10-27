@@ -1,0 +1,23 @@
+requirement:
+  id: REQ-00002-2
+  title: The extension shall run the plantuml-lsp language client for the session
+  description: >
+    The extension shall run the plantuml-lsp language client for the
+    session: started on activation from the configured command, or
+    plantuml-lsp when none is set, for file-scheme plantuml documents;
+    skipped when the language server is disabled; degraded to a warning
+    naming the install command when the server cannot start; stopped on
+    deactivation.
+  rationale: >
+    resolveServerCommand trims the configured path and falls back to plantuml-lsp; the document selector targets file-scheme plantuml documents. Pure helpers, unit-tested outside the editor host.
+    Revision 2 (PUML-103, BOK-00321-2 walk): the requirement owns the
+    client's lifecycle, the use case extension.ts and serverOptions.ts
+    realise together; revision 1 stated only the command resolution,
+    so the activation unit had no owner and cited the manifest and
+    packaging requirements instead.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00003-1
+  tags:
+    - client

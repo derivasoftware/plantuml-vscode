@@ -1,0 +1,13 @@
+requirement:
+  id: REQ-00008-1
+  title: The preview host shall serve the active diagram to one panel
+  description: >
+    The preview host shall serve the active diagram to one panel: the command asks for a plantuml document when none is active, opens one panel beside the editor and reveals it on a second invocation, serves it a nonce-locked CSP page carrying the grammar and runtime wasm, and posts the document source with its includes expanded when the webview is ready and on every edit of the active document.
+  rationale: >
+    client/preview.ts is the host half of the preview: it owns the panel, the page and the source protocol, while the webview (REQ-00004-1) parses and draws. Its controller tests sat under REQ-00004-1, which states the webview; the walk (PUML-103, BOK-00321-2) gives the host unit its own owner.
+  status: APPROVED
+  asil: QM
+  parent_ids:
+    - SREQ-00005-1
+  tags:
+    - preview

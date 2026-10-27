@@ -9,13 +9,13 @@ and the last test runs. Absent evidence reads `?`, never a guess.
 | Artefact | Count |
 | --- | --- |
 | System requirements | 5 |
-| Requirements | 5 |
-| Verifications | 5 |
+| Requirements | 6 |
+| Verifications | 6 |
 | Constraints | 0 |
 | Design diagrams | 7 |
 | Code classes | 0 |
 | Free functions | 23 |
-| Test cases | 27 |
+| Test cases | 26 |
 
 ### Metrics
 
@@ -29,5 +29,5 @@ and the last test runs. Absent evidence reads `?`, never a guess.
 | Tests executed (ST) | ? |
 | UT line coverage | 44% |
 | ST line coverage | ? |
-| argos diagnostics | 1 |
+| argos diagnostics | 0 |
 <!-- /folio -->

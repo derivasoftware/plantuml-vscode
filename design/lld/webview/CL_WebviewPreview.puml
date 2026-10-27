@@ -53,6 +53,9 @@ namespace webview.preview {
   class wireToolbar <<function>> {
     + wireToolbar()
   }
+  class syncTheme <<function>> {
+    + syncTheme()
+  }
 }
 
 !endsub

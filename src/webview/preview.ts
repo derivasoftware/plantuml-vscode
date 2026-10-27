@@ -54,13 +54,21 @@ function currentIr(): RenderIr | null {
   return ir;
 }
 
-function rerender(): void {
+// Layout is asynchronous; a drag fires renders faster than they finish, so
+// only the latest one may write the stage.
+let renderGeneration = 0;
+
+async function rerender(): Promise<void> {
+  const generation = ++renderGeneration;
   try {
     const ir = currentIr();
     if (!ir) return;
-    root().innerHTML = renderSvg(ir, { positions });
+    const svg = await renderSvg(ir, { positions });
+    if (generation !== renderGeneration) return;
+    root().innerHTML = svg;
     applyView();
   } catch (err) {
+    if (generation !== renderGeneration) return;
     root().innerHTML = `<pre class="error">${String(err)}</pre>`;
   }
 }
@@ -85,7 +93,7 @@ function setEngine(next: "native" | "plantuml"): void {
   document.getElementById("reset-layout")?.classList.toggle("off", !interactive);
   if (interactive) {
     status("");
-    rerender();
+    void rerender();
   } else {
     status("rendering with plantuml.jar…");
   }
@@ -100,7 +108,7 @@ function showJarResult(msg: { ok: boolean; svg?: string; error?: string }): void
   } else {
     // Graceful fallback: keep a usable preview and say why.
     status(`plantuml.jar: ${msg.error ?? "failed"} — showing native render`);
-    rerender();
+    void rerender();
   }
 }
 
@@ -166,7 +174,7 @@ function queueRender(): void {
   renderQueued = true;
   requestAnimationFrame(() => {
     renderQueued = false;
-    rerender();
+    void rerender();
   });
 }
 
@@ -210,7 +218,7 @@ function wireToolbar(): void {
     const box = document.getElementById(id) as HTMLInputElement;
     box.addEventListener("change", () => {
       filters[key] = box.checked;
-      rerender();
+      void rerender();
     });
   };
   bind("f-members", "members");
@@ -224,7 +232,7 @@ function wireToolbar(): void {
   });
   document.getElementById("reset-layout")!.addEventListener("click", () => {
     for (const key of Object.keys(positions)) delete positions[key];
-    rerender();
+    void rerender();
   });
   document.getElementById("reset-view")!.addEventListener("click", () => {
     view.x = 0;
@@ -236,7 +244,20 @@ function wireToolbar(): void {
 
 // ── Boot ─────────────────────────────────────────────────────────────────────
 
+// The renderer themes itself from the root's data-theme; VS Code states its
+// theme as a body class instead, and changes it live.
+function syncTheme(): void {
+  const body = document.body.classList;
+  const dark = body.contains("vscode-dark") || body.contains("vscode-high-contrast");
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+}
+
 async function init(): Promise<void> {
+  syncTheme();
+  new MutationObserver(syncTheme).observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
   const cfg = window.__PREVIEW__;
   await Parser.init({ locateFile: () => cfg.treeSitterWasm });
   const language = await Language.load(cfg.grammarWasm);
@@ -262,7 +283,7 @@ async function init(): Promise<void> {
     if (msg.type === "source" && typeof msg.text === "string") {
       source = msg.text;
       if (msg.engine && msg.engine !== engine) setEngine(msg.engine);
-      if (engine === "native") rerender();
+      if (engine === "native") void rerender();
       else status("rendering with plantuml.jar…");
     } else if (msg.type === "jar-svg") {
       showJarResult({ ok: !!msg.ok, svg: msg.svg, error: msg.error });

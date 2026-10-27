@@ -8,7 +8,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as stub from "../stubs/vscode";
 
 vi.mock("vscode", () => import("../stubs/vscode"));
-vi.mock("plantuml-render/browser", () => ({
+vi.mock("plantuml-render/preprocess", () => ({
   expandIncludes: vi.fn(async (text: string) => text),
 }));
 

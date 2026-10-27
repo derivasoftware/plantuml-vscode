@@ -31,6 +31,22 @@ describe("webview pipeline", () => {
   it("never reaches for eval — CSP allows wasm only", () => {
     expect(bundle).not.toMatch(/[^.\w]eval\s*\(\s*["'`]/);
   });
+
+  it("themes the drawing from the editor's theme, live", () => {
+    // VS Code states its theme as a body class; the renderer reads the
+    // root's data-theme, so the webview translates and keeps watching
+    expect(bundle).toContain("vscode-dark");
+    expect(bundle).toContain("vscode-high-contrast");
+    expect(bundle).toContain("dataset.theme");
+    expect(bundle).toContain("MutationObserver");
+  });
+
+  it("lets only the latest render write the stage", () => {
+    // layout is asynchronous and a drag fires renders faster than they
+    // finish: an older result must never overwrite a newer one
+    expect(bundle).toMatch(/await renderSvg\(/);
+    expect(bundle).toContain("renderGeneration");
+  });
 });
 
 describe("interactive preview", () => {

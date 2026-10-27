@@ -7,11 +7,15 @@ verification:
     webview exactly as built. Revision 2 adds the controller side: the
     panel serves nonce-locked CSP html carrying both wasm uris, answers
     the webview's ready with the include-expanded source, and re-posts
-    on active-document edits and render-configuration changes.
+    on active-document edits and render-configuration changes. Under
+    the asynchronous renderer (plantuml-render 0.25) the drawing follows
+    the editor's theme live and only the latest render writes the stage.
   method: test
   test_ids:
     - "tests/integration/preview.test.ts::bundles the wasm parser and the render engine"
     - "tests/integration/preview.test.ts::never reaches for eval \u2014 CSP allows wasm only"
+    - "tests/integration/preview.test.ts::themes the drawing from the editor's theme, live"
+    - "tests/integration/preview.test.ts::lets only the latest render write the stage"
     - "tests/integration/clientPreview.test.ts::asks for a .puml file when none is active"
     - "tests/integration/clientPreview.test.ts::creates one panel and reveals it on the second invocation"
     - "tests/integration/clientPreview.test.ts::serves nonce-locked CSP html carrying both wasm uris"

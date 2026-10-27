@@ -33,12 +33,6 @@ binaries. Interactive and read-only: drag entities, notes and whole
 namespaces, filter members and containers, pan and zoom; includes expand
 before rendering and the source is never touched.
 
-**Full-fidelity fallback**: the toolbar switches to the official
-`plantuml.jar` (configure `plantuml.render.jarPath`). The jar renders
-with the document's directory as cwd, follows the editor theme, and if
-it fails the preview falls back to the native render and says why.
-Nothing leaves the machine.
-
 **Language intelligence**: spawns
 [plantuml-lsp](https://github.com/derivasoftware/plantuml-lsp)
 for parse diagnostics, document symbols, go-to-definition across
@@ -52,14 +46,14 @@ The family covers a standard-driven subset of PlantUML, never the whole
 language. Class diagrams: 125 of 149 standard constructs structural;
 sequence: 70 of 111, with the lifecycle verbs (activate, ref, box,
 delays) still raw; activity: actions and swimlanes structural, control
-flow raw. Everything else (deployment, components, state, mindmaps,
-gantt) parses lossless as raw lines, never an ERROR, but gets no
-structure. The native preview draws the class subset
-interactively; the `plantuml.jar` fallback covers full fidelity.
+flow raw. Everything else (deployment, components, mindmaps, gantt)
+parses lossless as raw lines, never an ERROR, but gets no structure.
+The preview draws class, sequence, activity and state diagrams; a kind
+it does not draw shows a notice saying so instead of a blank panel.
 
 ## Documentation
 
-- [Preview guide](doc/preview.md): the two engines, interaction, limits
+- [Preview guide](doc/preview.md): what it draws, interaction, limits
 - [Settings reference](doc/settings.md): every setting and its default
 - [Architecture](doc/architecture.md): the model's diagrams, rendered from source
 - [Requirements & status](doc/requirements.md): what was asked and the traceability matrix

@@ -22,9 +22,9 @@ _hld · `design/hld/HLD_PlantumlVscode.puml`_
 
 _cl · `design/lld/client/CL_Client.puml`_
 
-- traces to: `REQ-00001-1` `REQ-00002-1` `REQ-00003-1` `REQ-00004-1` `REQ-00006-1` `REQ-00007-1`
-- implemented in: `src/client/extension.ts` · `src/client/jarRenderer.ts` · `src/client/preview.ts` · `src/client/serverOptions.ts`
-- verified by: `tests/clientPreview.test.ts` (3) · `tests/extensionActivation.test.ts` (1) · `tests/jarRenderer.test.ts` (2) · `tests/manifest.test.ts` (2) · `tests/preview.test.ts` (2) · `tests/serverOptions.test.ts` (2)
+- traces to: `REQ-00001-1` `REQ-00002-1` `REQ-00003-1` `REQ-00004-1`
+- implemented in: `src/client/extension.ts` · `src/client/preview.ts` · `src/client/serverOptions.ts`
+- verified by: `tests/integration/clientPreview.test.ts` (5) · `tests/integration/extensionActivation.test.ts` (4) · `tests/integration/manifest.test.ts` (4) · `tests/integration/preview.test.ts` (6) · `tests/integration/serverOptions.test.ts` (3)
 
 ![CL_Client](assets/CL_Client.svg)
 
@@ -35,7 +35,7 @@ _cl · `design/lld/client/CL_Client.puml`_
 <ul>
 <li>source: <code>design/lld/client/CL_ServerOptions.puml</code></li>
 <li>implemented in: <code>src/client/serverOptions.ts</code></li>
-<li>verified by: <code>tests/extensionActivation.test.ts</code> (1), <code>tests/serverOptions.test.ts</code> (2)</li>
+<li>verified by: <code>tests/integration/extensionActivation.test.ts</code> (4), <code>tests/integration/serverOptions.test.ts</code> (3)</li>
 </ul>
 <p><img alt="CL_ServerOptions" src="assets/CL_ServerOptions.svg"></p>
 </details>
@@ -45,29 +45,19 @@ _cl · `design/lld/client/CL_Client.puml`_
 <ul>
 <li>source: <code>design/lld/client/CL_Extension.puml</code></li>
 <li>implemented in: <code>src/client/extension.ts</code></li>
-<li>verified by: <code>tests/manifest.test.ts</code> (1)</li>
+<li>verified by: <code>tests/integration/manifest.test.ts</code> (4)</li>
 </ul>
 <p><img alt="CL_Extension" src="assets/CL_Extension.svg"></p>
 </details>
 
 <details>
-<summary><code>CL_Preview</code> · traces to <code>REQ-00004-1</code> <code>REQ-00007-1</code></summary>
+<summary><code>CL_Preview</code> · traces to <code>REQ-00004-1</code></summary>
 <ul>
 <li>source: <code>design/lld/client/CL_Preview.puml</code></li>
 <li>implemented in: <code>src/client/preview.ts</code></li>
-<li>verified by: <code>tests/clientPreview.test.ts</code> (3), <code>tests/manifest.test.ts</code> (1), <code>tests/preview.test.ts</code> (2)</li>
+<li>verified by: <code>tests/integration/clientPreview.test.ts</code> (5), <code>tests/integration/preview.test.ts</code> (6)</li>
 </ul>
 <p><img alt="CL_Preview" src="assets/CL_Preview.svg"></p>
-</details>
-
-<details>
-<summary><code>CL_JarRenderer</code> · traces to <code>REQ-00006-1</code></summary>
-<ul>
-<li>source: <code>design/lld/client/CL_JarRenderer.puml</code></li>
-<li>implemented in: <code>src/client/jarRenderer.ts</code></li>
-<li>verified by: <code>tests/jarRenderer.test.ts</code> (2)</li>
-</ul>
-<p><img alt="CL_JarRenderer" src="assets/CL_JarRenderer.svg"></p>
 </details>
 
 ### Module overview
@@ -78,7 +68,7 @@ _cl · `design/lld/webview/CL_Webview.puml`_
 
 - traces to: `REQ-00004-1` `REQ-00005-1`
 - implemented in: `src/webview/preview.ts`
-- verified by: `tests/clientPreview.test.ts` (2) · `tests/preview.test.ts` (2)
+- verified by: `tests/integration/clientPreview.test.ts` (5) · `tests/integration/preview.test.ts` (9)
 
 ![CL_Webview](assets/CL_Webview.svg)
 
@@ -89,7 +79,7 @@ _cl · `design/lld/webview/CL_Webview.puml`_
 <ul>
 <li>source: <code>design/lld/webview/CL_WebviewPreview.puml</code></li>
 <li>implemented in: <code>src/webview/preview.ts</code></li>
-<li>verified by: <code>tests/clientPreview.test.ts</code> (2), <code>tests/preview.test.ts</code> (2)</li>
+<li>verified by: <code>tests/integration/clientPreview.test.ts</code> (5), <code>tests/integration/preview.test.ts</code> (9)</li>
 </ul>
 <p><img alt="CL_WebviewPreview" src="assets/CL_WebviewPreview.svg"></p>
 </details>

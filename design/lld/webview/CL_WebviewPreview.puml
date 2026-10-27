@@ -38,17 +38,8 @@ namespace webview.preview {
   class root <<function>> {
     + root()
   }
-  class setEngine <<function>> {
-    + setEngine()
-  }
-  class showJarResult <<function>> {
-    + showJarResult()
-  }
   class stage <<function>> {
     + stage()
-  }
-  class status <<function>> {
-    + status()
   }
   class wireToolbar <<function>> {
     + wireToolbar()

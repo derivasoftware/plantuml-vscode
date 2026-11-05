@@ -22,4 +22,4 @@ verification:
     - "tests/integration/preview.test.ts::lets only the latest render write the stage"
     - "tests/integration/preview.test.ts::renders with the bundled engine only, no jar path ships"
     - "tests/integration/preview.test.ts::never pulls node builtins into the webview"
-  status: DRAFT
+  status: APPROVED

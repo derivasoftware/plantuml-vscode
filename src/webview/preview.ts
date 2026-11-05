@@ -15,7 +15,7 @@ declare global {
 
 const vscode = acquireVsCodeApi();
 
-async function init(): Promise<void> {
+export async function init(): Promise<void> {
   syncTheme();
   new MutationObserver(syncTheme).observe(document.body, {
     attributes: true,

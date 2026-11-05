@@ -39,12 +39,12 @@ export function registerPreview(context: vscode.ExtensionContext): void {
   );
 }
 
-function activePlantumlDocument(): vscode.TextDocument | undefined {
+export function activePlantumlDocument(): vscode.TextDocument | undefined {
   const doc = vscode.window.activeTextEditor?.document;
   return doc?.languageId === "plantuml" ? doc : undefined;
 }
 
-function showPreview(context: vscode.ExtensionContext): void {
+export function showPreview(context: vscode.ExtensionContext): void {
   const doc = activePlantumlDocument();
   if (!doc) {
     void vscode.window.showInformationMessage(
@@ -81,7 +81,7 @@ function showPreview(context: vscode.ExtensionContext): void {
   panel.webview.html = html(context, panel.webview);
 }
 
-function postSource(doc: vscode.TextDocument): void {
+export function postSource(doc: vscode.TextDocument): void {
   void (async () => {
     const expanded = await expandIncludes(
       doc.getText(),
@@ -92,7 +92,7 @@ function postSource(doc: vscode.TextDocument): void {
   })();
 }
 
-function html(
+export function html(
   context: vscode.ExtensionContext,
   webview: vscode.Webview,
 ): string {

@@ -17,7 +17,7 @@ let drag: Drag | null = null;
 let panning: { startX: number; startY: number; baseX: number; baseY: number } | null =
   null;
 
-function draggableGroup(target: EventTarget | null): SVGGElement | null {
+export function draggableGroup(target: EventTarget | null): SVGGElement | null {
   let el = target as Element | null;
   while (el && el.tagName !== "svg") {
     if (
@@ -33,7 +33,7 @@ function draggableGroup(target: EventTarget | null): SVGGElement | null {
   return null;
 }
 
-function onPointerDown(ev: PointerEvent): void {
+export function onPointerDown(ev: PointerEvent): void {
   const group = draggableGroup(ev.target);
   if (group) {
     const base = positions[group.id] ?? { dx: 0, dy: 0 };
@@ -56,7 +56,7 @@ function onPointerDown(ev: PointerEvent): void {
 }
 
 let renderQueued = false;
-function queueRender(): void {
+export function queueRender(): void {
   if (renderQueued) return;
   renderQueued = true;
   requestAnimationFrame(() => {
@@ -65,7 +65,7 @@ function queueRender(): void {
   });
 }
 
-function onPointerMove(ev: PointerEvent): void {
+export function onPointerMove(ev: PointerEvent): void {
   if (drag) {
     positions[drag.id] = {
       dx: drag.baseDx + Math.round((ev.clientX - drag.startX) / view.scale),
@@ -79,12 +79,12 @@ function onPointerMove(ev: PointerEvent): void {
   }
 }
 
-function onPointerUp(): void {
+export function onPointerUp(): void {
   drag = null;
   panning = null;
 }
 
-function onWheel(ev: WheelEvent): void {
+export function onWheel(ev: WheelEvent): void {
   ev.preventDefault();
   const factor = ev.deltaY < 0 ? 1.1 : 1 / 1.1;
   const next = Math.min(4, Math.max(0.2, view.scale * factor));
@@ -98,7 +98,7 @@ function onWheel(ev: WheelEvent): void {
   applyView();
 }
 
-function wireToolbar(): void {
+export function wireToolbar(): void {
   const bind = (id: string, key: keyof typeof filters) => {
     const box = document.getElementById(id) as HTMLInputElement;
     box.addEventListener("change", () => {

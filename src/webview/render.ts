@@ -42,7 +42,7 @@ export function setSource(text: string): void {
   source = text;
 }
 
-function currentIr(): RenderIr | null {
+export function currentIr(): RenderIr | null {
   if (!parser || !source) return null;
   const tree = parser.parse(source);
   if (!tree) return null;

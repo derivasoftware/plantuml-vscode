@@ -16,4 +16,4 @@ verification:
     - tests/integration/clientPreview.test.ts::answers the webview's ready with the expanded source
     - tests/integration/clientPreview.test.ts::re-posts on active-document edits and ignores other documents
     - "tests/integration/clientPreview.test.ts::carries include expansion and no layout engine"
-  status: DRAFT
+  status: APPROVED
